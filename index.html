@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="D'Arco Arquitetura — estúdio em Lavras, MG. Residências e espaços comerciais, do primeiro esboço à última demão de tinta.">
+<meta name="theme-color" content="#12100E">
+<title>D'Arco Arquitetura — Projetos que continuam fazendo sentido depois de prontos</title>
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="D'Arco Arquitetura — Lavras, MG">
+<meta property="og:description" content="Residências e espaços comerciais que unem identidade, funcionalidade e execução cuidada.">
+<meta property="og:image" content="Fotos/9.png">
+
+<!-- <link rel="icon" href="..."> — pendente: o PNG do logo não tem transparência. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="Fotos/9.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   D'ARCO ARQUITETURA — Landing page
+   Tokens, escala e componentes conforme "Design system arquitetura · MD".
+   Sem bibliotecas. Único recurso externo: as duas famílias do Google Fonts
+   nomeadas pelo design system (Cormorant Garamond + Manrope).
+   ========================================================================== */
+
+:root{
+  /* ---------- Bases ---------- */
+  --base-900:#12100E;
+  --base-800:#1C1A17;
+  --base-700:#262320;
+  --sand-050:#F4F1EC;
+  --sand-100:#E8E2D8;
+  --sand-200:#D6CEC1;
+
+  /* ---------- Acento ---------- */
+  --gold-400:#DFC38C;
+  --gold-500:#C4A265;
+  --gold-700:#96793F;
+  --bronze-500:#A9714B;
+  --stone-500:#6E6A63;
+
+  /* ---------- Texto sobre escuro ---------- */
+  --text-on-dark:#F2EFE9;
+  --text-on-dark-2:#B0A99E;
+  --text-on-dark-3:#7A736A;
+
+  /* ---------- Texto sobre claro ---------- */
+  --text-on-light:#1C1A17;
+  --text-on-light-2:#55504A;
+  --text-on-light-3:#8A837A;
+
+  /* ---------- Raio ---------- */
+  --r-xs:4px; --r-sm:6px; --r-md:12px; --r-lg:20px; --r-full:999px;
+
+  /* ---------- Sombras ---------- */
+  --shadow-sm:0 2px 8px rgba(0,0,0,.25);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.45);
+  --shadow-glow:0 8px 24px rgba(196,162,101,.20);
+
+  /* ---------- Espaço (base 8) ---------- */
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px;
+  --s6:48px; --s7:64px; --s8:96px; --s9:128px;
+
+  /* ---------- Tipografia ---------- */
+  --font-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --font-body:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  /* ---------- Layout ---------- */
+  --container:1280px;
+  --gutter:24px;
+  --header-h:68px;
+
+  /* ---------- Ritmo vertical (mobile-first) ---------- */
+  --section-y:var(--s7);
+  --title-gap:var(--s5);
+
+  /* ---------- Tratamento fotográfico ----------
+     O design system pede temperatura quente uniforme entre projetos.
+     Os renders 1–5 são de luz diurna fria; recebem correção mais forte. */
+  --photo-base:saturate(.92) contrast(1.02);
+  --photo-warm:saturate(.86) sepia(.16) hue-rotate(-6deg) contrast(1.04) brightness(.99);
+}
+
+@media (min-width:768px){
+  :root{ --section-y:104px; --title-gap:var(--s6); --header-h:76px; }
+}
+@media (min-width:1024px){
+  :root{ --section-y:var(--s9); }
+}
+
+/* ============================== RESET ============================== */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--base-900);
+  color:var(--text-on-dark-2);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.70;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:clip;
+}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:where(h1,h2,h3,h4){font-weight:600;text-wrap:balance}
+p{text-wrap:pretty}
+
+/* ================ SUPERFÍCIES DO NAVEGADOR ================
+   Seleção, cursor, rolagem e foco também carregam o sistema. */
+::selection{background:var(--gold-500);color:var(--base-900)}
+html{scrollbar-color:var(--base-700) var(--base-900);scrollbar-width:thin}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--base-900)}
+::-webkit-scrollbar-thumb{background:var(--base-700);border:3px solid var(--base-900);border-radius:var(--r-full)}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-700)}
+
+:focus-visible{outline:2px solid var(--gold-400);outline-offset:3px;border-radius:var(--r-xs)}
+.on-light :focus-visible{outline-color:var(--gold-700)}
+
+.skip{
+  position:fixed;left:16px;top:-120px;z-index:300;
+  background:var(--gold-500);color:var(--base-900);
+  padding:14px 22px;border-radius:var(--r-sm);
+  font-size:15px;font-weight:600;
+  transition:top .2s ease-out;
+}
+.skip:focus{top:16px}
+
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ============================== LAYOUT ============================== */
+.wrap{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:16px}
+@media (min-width:768px){ .wrap{padding-inline:var(--gutter)} }
+
+.section{padding-block:var(--section-y)}
+[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+
+.on-dark{background:var(--base-900);color:var(--text-on-dark-2)}
+.on-light{background:var(--sand-050);color:var(--text-on-light-2)}
+
+/* ============================ TIPOGRAFIA ============================ */
+.eyebrow{
+  font-size:12px;font-weight:600;line-height:1.4;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-500);
+}
+.on-light .eyebrow{color:var(--gold-700)}
+
+h1,.h1{font-family:var(--font-display);font-size:40px;line-height:1.10;letter-spacing:-.02em;color:var(--text-on-dark)}
+h2,.h2{font-family:var(--font-display);font-size:30px;line-height:1.20;letter-spacing:-.01em;color:var(--text-on-dark)}
+h3,.h3{font-family:var(--font-display);font-size:24px;line-height:1.30;color:var(--text-on-dark)}
+h4,.h4{font-family:var(--font-body);font-size:20px;font-weight:600;line-height:1.35;color:var(--text-on-dark)}
+.on-light :is(h1,h2,h3,h4,.h1,.h2,.h3,.h4){color:var(--text-on-light)}
+
+.lead{font-size:18px;line-height:1.65}
+.small{font-size:14px;line-height:1.60}
+.meta{font-size:13px;font-weight:500;line-height:1.50;letter-spacing:.01em;color:var(--text-on-dark-2)}
+.on-light .meta{color:var(--text-on-light-2)}
+
+.measure{max-width:62ch}
+.measure-sm{max-width:50ch}
+
+@media (min-width:768px){
+  h1,.h1{font-size:clamp(46px,5.6vw,64px);line-height:1.05}
+  h2,.h2{font-size:clamp(34px,3.9vw,44px);line-height:1.15}
+  h3,.h3{font-size:30px;line-height:1.25}
+}
+
+.sec-head{margin-bottom:var(--title-gap)}
+.sec-head .eyebrow{display:block;margin-bottom:var(--s3)}
+.sec-head > p:not(.eyebrow){margin-top:var(--s4)}
+
+/* ============================== BOTÕES ============================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:14px 28px;
+  font-size:15px;font-weight:600;line-height:1;letter-spacing:.02em;
+  border-radius:var(--r-sm);
+  transition:background-color .2s ease-out,color .2s ease-out,
+             border-color .2s ease-out,transform .2s ease-out,box-shadow .2s ease-out;
+}
+@media (min-width:768px){ .btn{padding:16px 32px} }
+
+.btn--primary{background:var(--gold-500);color:var(--base-900)}
+.btn--primary:hover{background:var(--gold-400);transform:translateY(-1px);box-shadow:var(--shadow-glow)}
+.btn--primary:active{background:var(--gold-700);transform:none;box-shadow:none}
+
+.btn--outline{background:transparent;color:var(--text-on-dark);border:1px solid rgba(196,162,101,.45);padding:13px 27px}
+@media (min-width:768px){ .btn--outline{padding:15px 31px} }
+.btn--outline:hover{border-color:var(--gold-500);background:rgba(196,162,101,.08)}
+.on-light .btn--outline{color:var(--text-on-light);border-color:rgba(150,121,63,.5)}
+.on-light .btn--outline:hover{border-color:var(--gold-700);background:rgba(150,121,63,.07)}
+
+.btn--pill{border-radius:var(--r-full)}
+
+.btn-ghost{
+  display:inline-block;padding:12px 0;
+  font-size:15px;font-weight:600;letter-spacing:.02em;
+  color:var(--gold-500);
+  border-bottom:1px solid rgba(196,162,101,.35);
+  transition:color .2s ease-out,border-color .2s ease-out;
+}
+.btn-ghost:hover{color:var(--gold-400);border-bottom-color:var(--gold-500)}
+.on-light .btn-ghost{color:var(--gold-700);border-bottom-color:rgba(150,121,63,.4)}
+.on-light .btn-ghost:hover{color:var(--bronze-500);border-bottom-color:var(--gold-700)}
+
+/* ============================== HEADER ============================== */
+.header{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  height:var(--header-h);
+  display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background-color .3s ease-out,border-color .3s ease-out,backdrop-filter .3s ease-out;
+}
+.header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to bottom,rgba(18,16,14,.72),rgba(18,16,14,0));
+  transition:opacity .3s ease-out;
+}
+.header.is-stuck{
+  background:rgba(18,16,14,.94);
+  border-bottom-color:var(--base-700);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+.header.is-stuck::before{opacity:0}
+
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s4)}
+
+/* Lockup tipográfico provisório.
+   O arquivo Logo/Editedimage_1788170363921.png não é utilizável: tem 0% de
+   pixels transparentes — é um logo branco achatado sobre o quadriculado que
+   representa transparência. Assim que houver um PNG com alpha real ou um SVG,
+   troque este bloco por <img src="..." alt="D'Arco Arquitetura"> e apague o CSS. */
+.brand{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:44px}
+.brand__name{
+  font-family:var(--font-display);
+  font-size:25px;line-height:1;letter-spacing:.005em;
+  color:var(--text-on-dark);
+}
+.brand__sub{
+  font-size:9px;font-weight:600;line-height:1;
+  letter-spacing:.30em;text-transform:uppercase;
+  color:var(--text-on-dark-2);
+}
+@media (min-width:768px){
+  .brand__name{font-size:28px}
+  .brand__sub{font-size:10px}
+}
+
+.nav{display:none}
+@media (min-width:1024px){
+  .nav{display:block}
+  .nav ul{display:flex;align-items:center;gap:var(--s5)}
+  .nav a{
+    position:relative;display:inline-flex;align-items:center;
+    min-height:44px;
+    font-size:14px;font-weight:500;letter-spacing:.01em;
+    color:var(--text-on-dark-2);
+    transition:color .2s ease-out;
+  }
+  .nav a::after{
+    content:"";position:absolute;left:0;right:0;bottom:10px;height:1px;
+    background:var(--gold-500);
+    transform:scaleX(0);transform-origin:left;
+    transition:transform .25s cubic-bezier(.22,1,.36,1);
+  }
+  .nav a:hover{color:var(--text-on-dark)}
+  .nav a:hover::after,
+  .nav a[aria-current="true"]::after{transform:scaleX(1)}
+  .nav a[aria-current="true"]{color:var(--text-on-dark)}
+}
+
+.header-cta{display:none}
+@media (min-width:1024px){ .header-cta{display:inline-flex;min-height:44px;padding:12px 26px} }
+
+/* --- Botão hambúrguer --- */
+.burger{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;margin-right:-10px;
+  border-radius:var(--r-sm);
+}
+@media (min-width:1024px){ .burger{display:none} }
+.burger span{
+  display:block;position:relative;
+  width:22px;height:1.5px;background:var(--text-on-dark);
+  transition:background-color .2s ease-out;
+}
+.burger span::before,.burger span::after{
+  content:"";position:absolute;left:0;width:22px;height:1.5px;background:var(--text-on-dark);
+  transition:transform .3s cubic-bezier(.22,1,.36,1),top .2s ease-out;
+}
+.burger span::before{top:-7px}
+.burger span::after{top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+/* --- Painel de navegação mobile --- */
+.menu{
+  position:fixed;inset:0;z-index:90;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--header-h) 24px var(--s7);
+  background:var(--base-900);
+  opacity:0;visibility:hidden;
+  /* visibility como degrau, nunca interpolada: ao abrir precisa valer
+     "visible" já no primeiro quadro, senão o foco de teclado é recusado. */
+  transition:opacity .3s ease-out,visibility 0s linear .3s;
+}
+.menu.is-open{
+  opacity:1;visibility:visible;
+  transition:opacity .3s ease-out,visibility 0s linear 0s;
+}
+@media (min-width:1024px){ .menu{display:none} }
+.menu ul{display:flex;flex-direction:column;gap:var(--s1)}
+.menu a{
+  display:flex;align-items:center;min-height:56px;
+  font-family:var(--font-display);font-size:30px;line-height:1.25;
+  color:var(--text-on-dark);
+  border-bottom:1px solid var(--base-700);
+  opacity:0;transform:translateY(12px);
+}
+.menu.is-open a{
+  opacity:1;transform:none;
+  transition:opacity .4s ease-out,transform .4s cubic-bezier(.22,1,.36,1);
+}
+.menu.is-open li:nth-child(1) a{transition-delay:.06s}
+.menu.is-open li:nth-child(2) a{transition-delay:.10s}
+.menu.is-open li:nth-child(3) a{transition-delay:.14s}
+.menu.is-open li:nth-child(4) a{transition-delay:.18s}
+.menu.is-open li:nth-child(5) a{transition-delay:.22s}
+.menu.is-open li:nth-child(6) a{transition-delay:.26s}
+.menu .btn{margin-top:var(--s6);width:100%;opacity:0;transform:translateY(12px)}
+.menu.is-open .btn{opacity:1;transform:none;transition:opacity .4s ease-out .30s,transform .4s cubic-bezier(.22,1,.36,1) .30s,background-color .2s ease-out}
+
+/* ================================ HERO ================================ */
+.hero{
+  position:relative;
+  display:flex;align-items:flex-end;
+  min-height:640px;min-height:100svh;
+  padding-top:calc(var(--header-h) + var(--s7));
+  padding-bottom:var(--s8);
+  background:var(--base-900);
+  overflow:hidden;
+}
+@media (min-width:768px){ .hero{padding-bottom:120px} }
+@media (min-width:1024px){ .hero{align-items:center;min-height:96svh;padding-bottom:140px} }
+
+.hero__media{position:absolute;inset:0;z-index:0}
+
+/* Camada 1 — imagem: sempre presente. Serve de cartaz enquanto o vídeo
+   carrega, e de plano definitivo no mobile e em movimento reduzido. */
+.hero__poster{
+  width:100%;height:100%;object-fit:cover;object-position:60% 50%;
+  filter:var(--photo-base);
+  transform:scale(1.06);
+  animation:heroPan 1.6s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes heroPan{to{transform:scale(1)}}
+
+/* Camada 2 — vídeo: só entra quando realmente começa a tocar. */
+.hero__video{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  filter:var(--photo-base);
+  opacity:0;
+  transition:opacity 1s ease-out;
+}
+.hero__video.is-playing{opacity:1}
+
+/* Controle de pausa — exigido pela WCAG 2.2.2 para movimento
+   automático com mais de 5 segundos. */
+.hero__toggle{
+  position:absolute;z-index:3;
+  right:16px;top:calc(var(--header-h) + 16px);
+  display:grid;place-items:center;
+  width:44px;height:44px;border-radius:var(--r-full);
+  border:1px solid rgba(242,239,233,.25);
+  color:var(--text-on-dark);
+  background:rgba(18,16,14,.45);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  transition:border-color .2s ease-out,color .2s ease-out,background-color .2s ease-out;
+}
+@media (min-width:768px){ .hero__toggle{right:24px} }
+.hero__toggle:hover{border-color:var(--gold-500);color:var(--gold-500);background:rgba(18,16,14,.7)}
+.hero__toggle[hidden]{display:none}
+.hero__toggle .ico-play{display:none}
+.hero__toggle[data-paused="true"] .ico-pause{display:none}
+.hero__toggle[data-paused="true"] .ico-play{display:block}
+
+/* Overlay obrigatório: base 85% → topo transparente, mais um lado esquerdo
+   sólido para garantir contraste do texto sobre foto clara. */
+.hero__media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to top,rgba(18,16,14,.96) 0%,rgba(18,16,14,.88) 28%,rgba(18,16,14,.45) 62%,rgba(18,16,14,.28) 100%),
+    linear-gradient(to right,rgba(18,16,14,.92) 0%,rgba(18,16,14,.55) 45%,rgba(18,16,14,.10) 80%);
+}
+
+.hero__inner{position:relative;z-index:1;width:100%}
+.hero__content{max-width:660px}
+.hero h1{margin:var(--s4) 0 var(--s4)}
+.hero .lead{color:var(--text-on-dark-2);max-width:52ch}
+.hero__actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.hero__actions .btn{flex:1 1 auto;min-width:180px}
+@media (min-width:520px){ .hero__actions .btn{flex:0 0 auto} }
+
+/* Entrada orquestrada — o único momento autoral da página */
+.hero .reveal{opacity:0;transform:translateY(16px)}
+.hero.is-ready .reveal{
+  opacity:1;transform:none;
+  transition:opacity .6s ease-out,transform .6s cubic-bezier(.16,1,.3,1);
+}
+.hero.is-ready .reveal:nth-child(1){transition-delay:.10s}
+.hero.is-ready .reveal:nth-child(2){transition-delay:.22s}
+.hero.is-ready .reveal:nth-child(3){transition-delay:.34s}
+.hero.is-ready .reveal:nth-child(4){transition-delay:.46s}
+
+/* Indicador de rolagem */
+.hero__scroll{
+  display:none;
+  position:absolute;left:50%;bottom:var(--s5);z-index:1;
+  transform:translateX(-50%);
+  align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-on-dark-2);
+}
+@media (min-width:1024px){ .hero__scroll{display:flex} }
+.hero__scroll i{
+  display:block;width:1px;height:36px;
+  background:linear-gradient(to bottom,var(--gold-700),transparent);
+}
+
+/* ============================ BARRA DE NÚMEROS ============================ */
+.stats-band{background:var(--base-900);padding-bottom:var(--s7)}
+.stats{
+  position:relative;margin-top:-56px;
+  background:var(--base-800);
+  border:1px solid var(--base-700);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg);
+  padding:var(--s5) var(--s4);
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:var(--s5) 0;
+}
+@media (min-width:768px){
+  .stats{grid-template-columns:repeat(4,1fr);padding:var(--s6) var(--s5);margin-top:-72px}
+}
+.stat{display:flex;flex-direction:column-reverse;padding-inline:var(--s4);text-align:center}
+@media (min-width:768px){ .stat{text-align:left} }
+.stat + .stat{border-left:1px solid var(--base-700)}
+.stat:nth-child(3){border-left:none}
+@media (min-width:768px){ .stat:nth-child(3){border-left:1px solid var(--base-700)} }
+.stat__num{
+  font-family:var(--font-display);
+  font-size:40px;font-weight:600;line-height:1;
+  color:var(--gold-500);
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+@media (min-width:1024px){ .stat__num{font-size:52px} }
+.stat__label{
+  margin-top:var(--s2);
+  font-size:12px;font-weight:600;line-height:1.4;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-on-dark-2);
+}
+
+/* ============================== SOBRE ============================== */
+.about__grid{display:grid;gap:var(--s6)}
+@media (min-width:1024px){
+  .about__grid{grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:var(--s8);align-items:start}
+}
+.about__body p + p{margin-top:var(--s4)}
+.about__figure{position:relative;order:-1}
+@media (min-width:1024px){ .about__figure{order:0;position:sticky;top:calc(var(--header-h) + 40px)} }
+.about__figure img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;
+  border-radius:var(--r-md);
+  filter:var(--photo-base);
+}
+@media (min-width:768px){ .about__figure img{aspect-ratio:5/4} }
+@media (min-width:1024px){ .about__figure img{aspect-ratio:4/5} }
+
+/* Bloco de citação — hairline dourada, sem caixa */
+.quote{
+  margin-top:var(--s6);
+  padding-left:var(--s4);
+  border-left:1px solid var(--gold-700);
+}
+.quote blockquote{
+  font-family:var(--font-display);
+  font-size:24px;line-height:1.30;
+  color:var(--text-on-light);
+}
+@media (min-width:768px){ .quote blockquote{font-size:28px} }
+
+/* ============================== SERVIÇOS ============================== */
+.svc-grid{
+  display:grid;gap:var(--s3);
+  grid-template-columns:1fr;
+}
+@media (min-width:600px){ .svc-grid{grid-template-columns:repeat(2,1fr);gap:var(--s4)} }
+@media (min-width:1024px){ .svc-grid{grid-template-columns:repeat(3,1fr)} }
+
+.svc{
+  padding:var(--s5) var(--s4);
+  background:var(--base-800);
+  border:1px solid var(--base-700);
+  border-radius:var(--r-sm);
+  transition:background-color .25s ease-out,border-color .25s ease-out;
+}
+@media (min-width:768px){ .svc{padding:var(--s5) var(--s5) 34px} }
+.svc:hover{background:var(--base-700);border-color:rgba(196,162,101,.4)}
+.svc__icon{
+  width:32px;height:32px;margin-bottom:var(--s4);
+  color:var(--gold-700);
+  transition:color .25s ease-out;
+}
+.svc:hover .svc__icon{color:var(--gold-500)}
+.svc h3{
+  font-family:var(--font-body);font-size:20px;font-weight:600;line-height:1.35;
+  color:var(--text-on-dark);
+  margin-bottom:var(--s2);
+}
+.svc p{font-size:14px;line-height:1.60;color:var(--text-on-dark-2)}
+
+/* ============================== PROCESSO ============================== */
+.process__grid{display:grid;gap:var(--s6)}
+@media (min-width:1024px){
+  .process__grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:var(--s8);align-items:start}
+}
+
+/* --- Prancha técnica (SVG que se desenha) --- */
+.plate{
+  position:sticky;top:calc(var(--header-h) + 8px);z-index:2;
+  background:var(--sand-100);
+  border:1px solid var(--sand-200);
+  border-radius:var(--r-md);
+  padding:var(--s3);
+}
+@media (min-width:1024px){
+  .plate{top:calc(var(--header-h) + 48px);padding:var(--s4)}
+}
+.plate__sheet{position:relative;background:var(--sand-050);border-radius:var(--r-xs);overflow:hidden}
+.plate svg{display:block;width:100%;height:36vh;max-height:300px}
+@media (min-width:1024px){ .plate svg{height:auto;max-height:none} }
+
+/* Legenda da prancha, no rodapé da folha */
+.plate__strip{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  margin-top:var(--s3);padding-top:var(--s3);
+  border-top:1px solid var(--sand-200);
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-on-light-2);
+}
+.plate__stage{color:var(--gold-700);font-variant-numeric:tabular-nums}
+
+/* Camadas do desenho: traço que se revela */
+.ly{opacity:0;transition:opacity .5s ease-out}
+.ly.is-on{opacity:1}
+.ly [data-draw]{
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.05s cubic-bezier(.22,1,.36,1) var(--d,0s);
+}
+.ly.is-on [data-draw]{stroke-dashoffset:0}
+.ly [data-fade]{opacity:0;transition:opacity .7s ease-out var(--d,.25s)}
+.ly.is-on [data-fade]{opacity:1}
+
+/* --- Lista de etapas --- */
+.steps{counter-reset:none}
+.step{
+  position:relative;
+  padding:var(--s5) 0 var(--s5) var(--s6);
+  border-top:1px solid var(--sand-200);
+}
+.step:last-child{border-bottom:1px solid var(--sand-200)}
+.step__n{
+  position:absolute;left:0;top:calc(var(--s5) + 2px);
+  font-family:var(--font-display);font-size:20px;line-height:1;
+  color:var(--text-on-light-3);
+  font-variant-numeric:tabular-nums;
+  transition:color .3s ease-out;
+}
+.step__bar{
+  position:absolute;left:0;top:-1px;bottom:-1px;width:2px;
+  background:var(--gold-700);
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
+}
+.step h3{
+  font-family:var(--font-body);font-size:17px;font-weight:600;line-height:1.4;
+  color:var(--text-on-light);
+  margin-bottom:var(--s2);
+  transition:color .3s ease-out;
+}
+.step p{font-size:15px;line-height:1.65;color:var(--text-on-light-2);max-width:46ch}
+.step.is-active .step__n{color:var(--gold-700)}
+.step.is-active .step__bar{transform:scaleY(1)}
+.step:hover h3{color:var(--bronze-500)}
+
+@media (min-width:768px){
+  .step{padding-left:72px}
+  .step__n{font-size:24px}
+  .step h3{font-size:19px}
+}
+
+/* ============================== PROJETOS ============================== */
+.work__head{display:grid;gap:var(--s4)}
+@media (min-width:768px){
+  .work__head{grid-template-columns:1fr auto;align-items:end;gap:var(--s6)}
+}
+.work-grid{
+  display:grid;gap:var(--s4);
+  grid-template-columns:1fr;
+  margin-top:var(--title-gap);
+}
+@media (min-width:600px){ .work-grid{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1024px){ .work-grid{grid-template-columns:repeat(3,1fr)} }
+
+.work{
+  position:relative;display:block;
+  background:var(--base-800);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  isolation:isolate;
+}
+.work__img{position:relative;aspect-ratio:4/5;overflow:hidden}
+.work__img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:var(--photo-base);
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.work--cool .work__img img{filter:var(--photo-warm)}
+.work:hover .work__img img,
+.work:focus-visible .work__img img{transform:scale(1.03)}
+.work__img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(18,16,14,.92) 0%,rgba(18,16,14,.55) 30%,rgba(18,16,14,0) 62%);
+}
+.work__body{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s3);
+  padding:var(--s4);
+}
+.work__title{display:block;font-family:var(--font-body);font-size:20px;font-weight:600;line-height:1.35;color:var(--text-on-dark)}
+.work__meta{display:block;margin-top:var(--s2);font-size:13px;font-weight:500;color:var(--text-on-dark-2);font-variant-numeric:tabular-nums}
+.work__go{
+  flex:0 0 auto;
+  display:grid;place-items:center;
+  width:36px;height:36px;border-radius:var(--r-full);
+  border:1px solid rgba(242,239,233,.25);
+  color:var(--text-on-dark);
+  transition:border-color .3s ease-out,color .3s ease-out,transform .3s cubic-bezier(.22,1,.36,1);
+}
+.work:hover .work__go,
+.work:focus-visible .work__go{border-color:var(--gold-500);color:var(--gold-500);transform:translate(2px,-2px)}
+
+/* ============================ DIFERENCIAIS ============================
+   Anatomia distinta dos cards de serviço: sem caixa, sem sombra —
+   apenas hairlines e um algarismo fino. */
+.why__grid{display:grid;gap:var(--s6)}
+@media (min-width:1024px){
+  .why__grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--s8);align-items:start}
+  .why__head{position:sticky;top:calc(var(--header-h) + 48px)}
+}
+.why-list{display:grid;gap:0}
+@media (min-width:768px){ .why-list{grid-template-columns:repeat(2,1fr);column-gap:var(--s6)} }
+.why{
+  position:relative;
+  padding:var(--s5) 0 var(--s5) 46px;
+  border-top:1px solid var(--sand-200);
+}
+@media (min-width:768px){
+  .why:nth-child(2){border-top:1px solid var(--sand-200)}
+  .why:nth-last-child(-n+2){border-bottom:1px solid var(--sand-200)}
+}
+.why:last-child{border-bottom:1px solid var(--sand-200)}
+.why__mark{
+  position:absolute;left:0;top:calc(var(--s5) + 4px);
+  width:28px;height:28px;color:var(--gold-700);
+}
+.why h3{
+  font-family:var(--font-body);font-size:17px;font-weight:600;line-height:1.4;
+  color:var(--text-on-light);margin-bottom:var(--s2);
+}
+.why p{font-size:15px;line-height:1.65;color:var(--text-on-light-2);max-width:44ch}
+
+/* ============================== DEPOIMENTO ============================== */
+.voice{max-width:820px;margin-inline:auto;text-align:center}
+.voice__mark{
+  width:34px;height:34px;margin:0 auto var(--s5);
+  color:var(--gold-700);
+}
+.voice blockquote{
+  font-family:var(--font-display);
+  font-size:26px;line-height:1.30;letter-spacing:-.01em;
+  color:var(--text-on-dark);
+}
+@media (min-width:768px){ .voice blockquote{font-size:36px} }
+@media (min-width:1024px){ .voice blockquote{font-size:40px} }
+.voice figcaption{margin-top:var(--s5)}
+.voice__name{font-size:15px;font-weight:600;color:var(--text-on-dark)}
+.voice__role{margin-top:var(--s1);font-size:13px;font-weight:500;color:var(--text-on-dark-2)}
+
+/* Marcação visual de conteúdo provisório */
+.tbd{
+  color:var(--text-on-dark-2);
+  border-bottom:1px dashed rgba(176,169,158,.5);
+}
+.on-light .tbd{color:var(--text-on-light-2);border-bottom-color:rgba(85,80,74,.45)}
+
+/* ============================== CTA FINAL ============================== */
+.close{position:relative;overflow:hidden}
+.close__inner{text-align:center;max-width:720px;margin-inline:auto}
+.close h2{font-size:34px}
+@media (min-width:768px){ .close h2{font-size:clamp(40px,5vw,58px)} }
+.close p{margin:var(--s4) auto 0;max-width:46ch}
+.close .btn{margin-top:var(--s6)}
+.close .wrap{position:relative;z-index:1}
+
+/* ================================ RODAPÉ ================================ */
+.footer{background:var(--base-900);border-top:1px solid var(--base-700);padding-block:var(--s7)}
+@media (min-width:768px){ .footer{padding-block:var(--s8) var(--s6)} }
+.footer__grid{display:grid;gap:var(--s6)}
+@media (min-width:768px){ .footer__grid{grid-template-columns:1.3fr 1fr 1fr} }
+@media (min-width:1024px){ .footer__grid{grid-template-columns:1.6fr 1fr 1fr;gap:var(--s8)} }
+.footer__brand .brand{margin-bottom:var(--s4)}
+.footer__brand .brand__name{font-size:34px}
+.footer__brand .brand__sub{font-size:11px;color:var(--gold-700)}
+.footer address{font-style:normal;font-size:15px;line-height:1.75}
+.footer address a{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--text-on-dark-2);
+  text-decoration:underline;
+  text-decoration-color:rgba(196,162,101,.35);
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+  transition:color .2s ease-out,text-decoration-color .2s ease-out;
+}
+.footer address a:hover{color:var(--gold-400);text-decoration-color:var(--gold-500)}
+.footer h2{
+  font-family:var(--font-body);font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-on-dark-2);
+  margin-bottom:var(--s4);
+}
+.footer nav li + li{margin-top:2px}
+.footer nav a{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-size:15px;color:var(--text-on-dark-2);
+  transition:color .2s ease-out;
+}
+.footer nav a:hover{color:var(--gold-400)}
+.footer__social a{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;
+  font-size:15px;color:var(--text-on-dark-2);
+  transition:color .2s ease-out;
+}
+.footer__social a:hover{color:var(--gold-400)}
+.footer__social svg{width:20px;height:20px;flex:0 0 auto}
+.footer__base{
+  margin-top:var(--s7);padding-top:var(--s4);
+  border-top:1px solid var(--base-700);
+  display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);
+  justify-content:space-between;
+  font-size:13px;color:var(--text-on-dark-2);
+}
+
+/* ============================ MOVIMENTO REDUZIDO ============================ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .hero .reveal{opacity:1;transform:none}
+  .hero__media img{transform:none;animation:none}
+  .ly{opacity:1}
+  .ly [data-draw]{stroke-dashoffset:0}
+  .ly [data-fade]{opacity:1}
+  .menu a,.menu .btn{opacity:1;transform:none}
+}
+
+/* ======================== UTILITÁRIOS ========================
+   Quebra manual de títulos grandes: inline no mobile, linha
+   escolhida no desktop (regra 2.4 do design system). */
+.brk{display:inline}
+@media (min-width:768px){ .brk{display:block} }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     DADOS FICTÍCIOS PARA APRESENTAÇÃO — substituir antes de publicar.
+     Todos marcados no HTML com o atributo data-ficticio.
+       · Barra de números: 180 projetos, 12 cidades  (35+ anos vem da bio
+         real do Instagram; 100% já constava no copy)
+       · Nomes/metragens dos 3 projetos, exceto "High Garden", que aparece
+         escrito na fachada dos próprios renders
+     NÃO fictício: endereço, telefone e Instagram, extraídos de
+     "Info Google Maps.txt" e "Info Instagram.txt".
+     NÃO preenchido: o depoimento — inventar prova social assinada por um
+     cliente é o único item que o copy proíbe explicitamente.
+     ===================================================================== -->
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============================ CABEÇALHO ============================ -->
+<header class="header" id="cabecalho">
+  <div class="wrap">
+    <!-- PROVISÓRIO: aguardando arquivo de logo com transparência real. -->
+    <a class="brand" href="#inicio" aria-label="D'Arco Arquitetura — ir para o início">
+      <span class="brand__name" aria-hidden="true">D'Arco</span>
+      <span class="brand__sub" aria-hidden="true">Arquitetura</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#estudio">Estúdio</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--primary btn--pill header-cta"
+       href="https://wa.me/5535999436335?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20D%27Arco%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+       target="_blank" rel="noopener">Fale conosco</a>
+
+    <button class="burger" type="button" id="burger"
+            aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu de navegação">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Painel de navegação mobile -->
+<div class="menu" id="menu-mobile">
+  <nav class="wrap" aria-label="Navegação principal (mobile)">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#estudio">Estúdio</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn btn--primary btn--pill"
+       href="https://wa.me/5535999436335?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20D%27Arco%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+       target="_blank" rel="noopener">Fale conosco</a>
+  </nav>
+</div>
+
+<main id="conteudo">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="hero__media">
+      <img class="hero__poster" src="Fotos/9.png"
+           alt="Fachada de edifício projetado pela D'Arco Arquitetura, em pedra e tijolo aparente, iluminada pela luz dourada do fim de tarde, com jardim vertical junto à entrada."
+           width="1080" height="1440" fetchpriority="high" decoding="async">
+
+      <!-- O src só é atribuído por JS, e apenas em telas ≥768px sem
+           preferência por movimento reduzido: evita baixar 3,5 MB no celular. -->
+      <video class="hero__video" id="hero-video"
+             data-src="Modern_house_pool_at_dusk_202608310822.mp4"
+             muted loop playsinline preload="none"
+             aria-hidden="true" tabindex="-1"></video>
+    </div>
+
+    <button class="hero__toggle" id="video-toggle" type="button" hidden
+            data-paused="false" aria-label="Pausar vídeo de fundo">
+      <svg class="ico-pause" viewBox="0 0 24 24" width="16" height="16" fill="none"
+           stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <path d="M9.5 5.5v13M14.5 5.5v13"/>
+      </svg>
+      <svg class="ico-play" viewBox="0 0 24 24" width="16" height="16" fill="none"
+           stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8.5 5.4v13.2L19 12z"/>
+      </svg>
+    </button>
+
+    <div class="wrap hero__inner">
+      <div class="hero__content">
+        <p class="eyebrow reveal">Arquitetura em Lavras, MG</p>
+
+        <h1 id="hero-titulo" class="reveal">
+          <span class="brk">Projetos que continuam </span><span class="brk">fazendo sentido </span>depois de prontos.
+        </h1>
+
+        <p class="lead reveal">
+          A D'Arco Arquitetura desenha residências e espaços comerciais que unem
+          identidade, funcionalidade e execução cuidada — do primeiro esboço à
+          última demão de tinta.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a class="btn btn--primary btn--pill" href="#projetos">Ver projetos</a>
+          <a class="btn btn--outline btn--pill"
+             href="https://wa.me/5535999436335?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20um%20projeto."
+             target="_blank" rel="noopener">Agendar conversa</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero__scroll" aria-hidden="true"><i></i>Role</p>
+  </section>
+
+  <!-- ======================= BARRA DE NÚMEROS ======================= -->
+  <section class="stats-band" aria-label="A D'Arco em números">
+    <div class="wrap">
+      <dl class="stats" id="numeros">
+        <div class="stat">
+          <dt class="stat__label">Anos de atuação</dt>
+          <dd class="stat__num" data-count-to="35" data-suffix="+" data-ficticio="parcial">35+</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat__label">Projetos entregues</dt>
+          <dd class="stat__num" data-count-to="180" data-ficticio="sim">180</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat__label">Cidades atendidas</dt>
+          <dd class="stat__num" data-count-to="12" data-ficticio="sim">12</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat__label">Obras acompanhadas</dt>
+          <dd class="stat__num" data-count-to="100" data-suffix="%">100%</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================== ESTÚDIO ============================== -->
+  <section class="section on-light" id="estudio" aria-labelledby="estudio-titulo">
+    <div class="wrap">
+      <div class="about__grid">
+
+        <div class="about__body">
+          <div class="sec-head">
+            <p class="eyebrow">O estúdio</p>
+            <h2 id="estudio-titulo">
+              <span class="brk">Arquitetura pensada </span>para quem vai viver nela
+            </h2>
+          </div>
+
+          <div class="measure">
+            <p>
+              A D'Arco nasceu em Lavras com um princípio simples: um projeto bom é
+              aquele que resolve a vida de quem mora ou trabalha ali — antes de
+              resolver qualquer tendência.
+            </p>
+            <p>
+              Trabalhamos lado a lado com cada cliente, do estudo do terreno à
+              escolha do último acabamento, para que cada espaço reflita quem o
+              habita, não um catálogo de referências prontas.
+            </p>
+            <p>
+              Atendemos projetos residenciais e comerciais em Lavras e região,
+              sempre com acompanhamento próximo — porque arquitetura de verdade
+              se decide na obra, não só na prancheta.
+            </p>
+          </div>
+
+          <div class="quote">
+            <blockquote>
+              "Um projeto bem-feito não chama atenção para si.
+              Chama atenção para a vida de quem mora nele."
+            </blockquote>
+          </div>
+        </div>
+
+        <figure class="about__figure">
+          <img src="Fotos/7.png" loading="lazy" decoding="async" width="1080" height="1440"
+               alt="Sala de estar projetada pela D'Arco: sofá em tecido cru, painel ripado de madeira ao fundo, mesa de centro em palhinha e iluminação embutida de luz quente.">
+        </figure>
+
+      </div>
+    </div>
+  </section>
+  <!-- ============================== SERVIÇOS ============================== -->
+  <section class="section on-dark" id="servicos" aria-labelledby="servicos-titulo">
+    <div class="wrap">
+      <div class="sec-head measure">
+        <p class="eyebrow">O que fazemos</p>
+        <h2 id="servicos-titulo">
+          <span class="brk">Do conceito à entrega </span>das chaves
+        </h2>
+        <p class="lead">
+          Cada etapa do projeto sob o mesmo olhar, para que nada se perca
+          na tradução entre o desenho e a obra.
+        </p>
+      </div>
+
+      <ul class="svc-grid">
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="1.5"/>
+            <path d="M3 9h18M9 21V9M14 9v5h7"/>
+          </svg>
+          <h3>Projeto arquitetônico</h3>
+          <p>Estudo preliminar, anteprojeto e projeto executivo — com todas as
+             pranchas necessárias para aprovação na prefeitura e para a obra.</p>
+        </li>
+
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21V8l5.5-3.5V21"/>
+            <path d="M8.5 21v-9H21v9" stroke-dasharray="2.5 3"/>
+            <path d="M13.5 7.5H20m0 0-2.4-2.4M20 7.5l-2.4 2.4"/>
+          </svg>
+          <h3>Reforma e ampliação</h3>
+          <p>Projetos que respeitam o que já existe e resolvem o que não
+             funciona mais, sem demolir memória por capricho.</p>
+        </li>
+
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5.5 19v-6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v6"/>
+            <path d="M5.5 15h-1a1.5 1.5 0 0 0 0 3h1M14.5 15h1a1.5 1.5 0 0 1 0 3h-1"/>
+            <path d="M7 19v1.8M13 19v1.8"/>
+            <path d="M19.5 3v5.2M17 8.2h5l-2.5 3.6z"/>
+          </svg>
+          <h3>Interiores</h3>
+          <p>Marcenaria, iluminação e acabamentos desenhados junto com a
+             arquitetura — não como uma etapa à parte, pensada depois.</p>
+        </li>
+
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2.5 9h19l-1.6-4.6a1 1 0 0 0-.95-.65H5.05a1 1 0 0 0-.95.65z"/>
+            <path d="M4.5 9v11.5h15V9"/>
+            <path d="M9 20.5v-6h6v6"/>
+          </svg>
+          <h3>Projetos comerciais</h3>
+          <p>Espaços para lojas, escritórios e clínicas que comunicam a marca
+             do cliente antes de qualquer placa na porta.</p>
+        </li>
+
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2.6 21 7.6v8.8L12 21.4 3 16.4V7.6z"/>
+            <path d="M12 21.4v-8.8M12 12.6 21 7.6M12 12.6 3 7.6"/>
+          </svg>
+          <h3>Prévia 3D</h3>
+          <p>Visualização realista do projeto antes da primeira parede erguida,
+             para decidir com segurança o que vai ficar de pé.</p>
+        </li>
+
+        <li class="svc">
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 16.5a8 8 0 0 1 16 0"/>
+            <path d="M9 16.5V7.2a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v9.3"/>
+            <path d="M2.5 16.5h19M12 5.7V3.4"/>
+          </svg>
+          <h3>Acompanhamento de obra</h3>
+          <p>Visitas periódicas e compatibilização com a engenharia, para que o
+             que foi desenhado seja o que efetivamente se constrói.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== PROCESSO ==============================
+       A prancha à esquerda ganha uma camada de desenho a cada etapa que
+       entra em foco: terreno, volumetria, detalhamento, aprovação, entrega. -->
+  <section class="section on-light" id="processo" aria-labelledby="processo-titulo">
+    <div class="wrap">
+      <div class="sec-head measure">
+        <p class="eyebrow">Como trabalhamos</p>
+        <h2 id="processo-titulo">
+          <span class="brk">Uma jornada clara, </span>do primeiro encontro à entrega
+        </h2>
+      </div>
+
+      <div class="process__grid">
+
+        <!-- ---------- Prancha ---------- -->
+        <div class="plate" aria-hidden="true">
+          <div class="plate__sheet">
+            <svg viewBox="0 0 600 430" role="presentation" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round">
+
+              <!-- ===== Camada 1 — TERRENO ===== -->
+              <g class="ly" data-layer="1" stroke="#6E6A63" stroke-width="1">
+                <path data-draw pathLength="1" d="M40 330H560"/>
+                <path data-draw pathLength="1" style="--d:.10s"
+                      d="M52 340l-8 10M82 340l-8 10M112 340l-8 10M142 340l-8 10M172 340l-8 10M202 340l-8 10M232 340l-8 10M262 340l-8 10M292 340l-8 10M322 340l-8 10M352 340l-8 10M382 340l-8 10M412 340l-8 10M442 340l-8 10M472 340l-8 10M502 340l-8 10M532 340l-8 10"/>
+                <path data-draw pathLength="1" style="--d:.20s" stroke-dasharray="4 4" d="M92 330v-38M508 330v-38"/>
+                <path data-draw pathLength="1" style="--d:.28s" d="M92 378h416M92 372v12M508 372v12"/>
+                <!-- vegetação -->
+                <path data-draw pathLength="1" style="--d:.34s" d="M492 330v-26M492 312l-9-8M492 318l9-7"/>
+                <path data-draw pathLength="1" style="--d:.38s" d="M478 300a15 15 0 0 1 28 0 13 13 0 0 1-28 0z"/>
+                <!-- rosa dos ventos -->
+                <g data-fade style="--d:.45s" stroke="#96793F">
+                  <circle cx="536" cy="62" r="17"/>
+                  <path d="M536 50v24M530 57l6-9 6 9"/>
+                </g>
+                <text data-fade style="--d:.5s" x="300" y="396" text-anchor="middle" fill="#6E6A63"
+                      font-family="Manrope, sans-serif" font-size="10" font-weight="600"
+                      letter-spacing="1.6" stroke="none">TERRENO</text>
+              </g>
+
+              <!-- ===== Camada 2 — VOLUMETRIA ===== -->
+              <g class="ly" data-layer="2" stroke="#1C1A17" stroke-width="1.4">
+                <path data-draw pathLength="1" d="M150 330V206h106"/>
+                <path data-draw pathLength="1" style="--d:.12s" d="M256 206V128h56v90"/>
+                <path data-draw pathLength="1" style="--d:.24s" d="M312 218h118v112"/>
+                <path data-draw pathLength="1" style="--d:.34s" stroke="#96793F" d="M136 214l134-16"/>
+                <path data-draw pathLength="1" style="--d:.40s" stroke="#96793F" d="M246 133l76-9"/>
+                <path data-draw pathLength="1" style="--d:.46s" stroke="#96793F" d="M300 210l148 20"/>
+              </g>
+
+              <!-- ===== Camada 3 — DESENVOLVIMENTO ===== -->
+              <g class="ly" data-layer="3">
+                <g stroke="#1C1A17" stroke-width="1.1">
+                  <path data-draw pathLength="1" d="M348 330v-72h34v72"/>
+                  <path data-draw pathLength="1" style="--d:.10s" d="M396 252h30v42h-30z"/>
+                  <path data-draw pathLength="1" style="--d:.18s" d="M174 238h54v50h-54z"/>
+                  <path data-draw pathLength="1" style="--d:.26s" d="M264 148v56M276 146v58M288 144v60M300 142v62"/>
+                </g>
+                <g stroke="#6E6A63" stroke-width="1">
+                  <path data-draw pathLength="1" style="--d:.32s" stroke-dasharray="5 4" d="M150 264h280"/>
+                  <path data-draw pathLength="1" style="--d:.38s" d="M118 206v124M112 206h12M112 330h12"/>
+                </g>
+                <text data-fade style="--d:.46s" x="108" y="272" text-anchor="middle" fill="#6E6A63"
+                      font-family="Manrope, sans-serif" font-size="10" font-weight="600"
+                      letter-spacing=".6" stroke="none" transform="rotate(-90 108 272)">3,20 m</text>
+              </g>
+
+              <!-- ===== Camada 4 — APROVAÇÃO E EXECUÇÃO ===== -->
+              <g class="ly" data-layer="4">
+                <g stroke="#6E6A63" stroke-width=".9">
+                  <path data-draw pathLength="1" d="M160 300h260M160 312h260M160 288h260"/>
+                  <path data-draw pathLength="1" style="--d:.12s" d="M258 160h52M258 172h52M258 184h52M258 148h52"/>
+                  <path data-draw pathLength="1" style="--d:.20s" d="M150 220l-12 2M186 216l-12 2M222 212l-12 2M258 208l-12 2"/>
+                </g>
+                <!-- carimbo de aprovação -->
+                <g data-fade style="--d:.3s" stroke="#96793F">
+                  <circle cx="96" cy="104" r="41" stroke-width="1.4"/>
+                  <circle cx="96" cy="104" r="34" stroke-width=".8"/>
+                  <path d="M66 104h60" stroke-width=".8"/>
+                  <text x="96" y="99" text-anchor="middle" fill="#96793F"
+                        font-family="Manrope, sans-serif" font-size="10" font-weight="600"
+                        letter-spacing="1.2" stroke="none">APROVADO</text>
+                  <text x="96" y="120" text-anchor="middle" fill="#96793F"
+                        font-family="Manrope, sans-serif" font-size="8" font-weight="600"
+                        letter-spacing="1" stroke="none">PREFEITURA</text>
+                </g>
+              </g>
+
+              <!-- ===== Camada 5 — ENTREGA ===== -->
+              <g class="ly" data-layer="5">
+                <g data-fade fill="#C4A265" stroke="none">
+                  <rect x="349" y="259" width="32" height="70" opacity=".38"/>
+                  <rect x="397" y="253" width="28" height="40" opacity=".38"/>
+                  <rect x="175" y="239" width="52" height="48" opacity=".38"/>
+                </g>
+                <ellipse data-fade style="--d:.35s" cx="365" cy="300" rx="86" ry="54"
+                         fill="#C4A265" opacity=".13" stroke="none"/>
+                <!-- morador na entrada -->
+                <g data-fade style="--d:.5s" stroke="#1C1A17" stroke-width="1.3">
+                  <circle cx="332" cy="296" r="5"/>
+                  <path d="M332 301v16M332 317l-6 13M332 317l6 13M325 308h14"/>
+                </g>
+                <path data-draw pathLength="1" style="--d:.55s" stroke="#96793F" stroke-width="1.2"
+                      d="M452 292a7 7 0 1 0-13 3l-13 13 4 4 3-3 4 4 4-4-4-4 5-5a7 7 0 0 0 10-8z"/>
+              </g>
+
+            </svg>
+          </div>
+
+          <p class="plate__strip">
+            <span>D'Arco · Prancha do processo</span>
+            <span class="plate__stage" id="plate-stage">01 / 05</span>
+          </p>
+        </div>
+
+        <!-- ---------- Etapas ---------- -->
+        <ol class="steps" id="steps">
+          <li class="step" data-step="1">
+            <span class="step__bar" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">01</span>
+            <h3>Conversa inicial</h3>
+            <p>Entendemos o terreno, a rotina de quem vai usar o espaço e o
+               orçamento disponível, antes de desenhar qualquer linha.</p>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step__bar" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">02</span>
+            <h3>Conceito</h3>
+            <p>Apresentamos a ideia central do projeto: volumetria, organização
+               dos ambientes e a lógica que vai guiar todas as decisões seguintes.</p>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step__bar" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">03</span>
+            <h3>Desenvolvimento</h3>
+            <p>Detalhamos plantas, cortes, fachadas e especificações técnicas até
+               o projeto estar pronto para aprovação e para a obra.</p>
+          </li>
+          <li class="step" data-step="4">
+            <span class="step__bar" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">04</span>
+            <h3>Aprovação e execução</h3>
+            <p>Cuidamos da documentação junto à prefeitura e acompanhamos o
+               início da construção lado a lado com a equipe de obra.</p>
+          </li>
+          <li class="step" data-step="5">
+            <span class="step__bar" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">05</span>
+            <h3>Entrega</h3>
+            <p>Vistoria final, ajustes de acabamento e entrega das chaves — com
+               o projeto original preservado do papel à realidade.</p>
+          </li>
+        </ol>
+
+      </div>
+    </div>
+  </section>
+  <!-- ============================== PROJETOS ============================== -->
+  <section class="section on-dark" id="projetos" aria-labelledby="projetos-titulo">
+    <div class="wrap">
+      <div class="work__head">
+        <div class="sec-head" style="margin-bottom:0">
+          <p class="eyebrow">Portfólio</p>
+          <h2 id="projetos-titulo">
+            <span class="brk">Projetos que já </span>saíram do papel
+          </h2>
+        </div>
+        <a class="btn-ghost" href="https://www.instagram.com/darco.arquitetura/"
+           target="_blank" rel="noopener">Ver todos os projetos</a>
+      </div>
+
+      <ul class="work-grid">
+        <li>
+          <a class="work" href="https://www.instagram.com/darco.arquitetura/" target="_blank" rel="noopener">
+            <span class="work__img">
+              <img src="Fotos/8.png" loading="lazy" decoding="async" width="1080" height="1440"
+                   alt="Residência térrea com telhado em duas águas, torre em tijolo aparente e caminho de placas de concreto sobre a grama, fotografada ao pôr do sol.">
+            </span>
+            <span class="work__body">
+              <span>
+                <span class="work__title" data-ficticio="sim">Residência Ipê</span>
+                <span class="work__meta" data-ficticio="sim">Centenário, Lavras · 280 m²</span>
+              </span>
+              <span class="work__go" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9.5 7H17v7.5"/>
+                </svg>
+              </span>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a class="work work--cool" href="https://www.instagram.com/darco.arquitetura/" target="_blank" rel="noopener">
+            <span class="work__img">
+              <img src="Fotos/4.png" loading="lazy" decoding="async" width="1080" height="1440"
+                   alt="Edifício comercial High Garden visto de baixo: fachada em tijolo claro, brises verticais escuros, grande pano de vidro e jardim suspenso na cobertura.">
+            </span>
+            <span class="work__body">
+              <span>
+                <span class="work__title">High Garden</span>
+                <span class="work__meta" data-ficticio="parcial">Centro, Lavras · 1.450 m²</span>
+              </span>
+              <span class="work__go" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9.5 7H17v7.5"/>
+                </svg>
+              </span>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a class="work work--cool" href="https://www.instagram.com/darco.arquitetura/" target="_blank" rel="noopener">
+            <span class="work__img">
+              <img src="Fotos/6.png" loading="lazy" decoding="async" width="1080" height="1440"
+                   alt="Cozinha integrada à sala de jantar: ilha em pedra clara, mesa de madeira maciça, cadeiras estofadas em tom cru e luminária pendente em latão.">
+            </span>
+            <span class="work__body">
+              <span>
+                <span class="work__title" data-ficticio="sim">Apartamento Aurora</span>
+                <span class="work__meta" data-ficticio="sim">Centro, Lavras · 145 m²</span>
+              </span>
+              <span class="work__go" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9.5 7H17v7.5"/>
+                </svg>
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ DIFERENCIAIS ============================ -->
+  <section class="section on-light" id="diferenciais" aria-labelledby="diferenciais-titulo">
+    <div class="wrap">
+      <div class="why__grid">
+        <div class="why__head sec-head" style="margin-bottom:0">
+          <p class="eyebrow">Por que a D'Arco</p>
+          <h2 id="diferenciais-titulo">
+            <span class="brk">Atenção que não termina </span>na entrega do projeto
+          </h2>
+        </div>
+
+        <ul class="why-list">
+          <li class="why">
+            <svg class="why__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21h18L3 3z"/><path d="M7.5 21v-3.5M11.5 21v-5.5"/>
+            </svg>
+            <h3>Projeto sob medida</h3>
+            <p>Cada projeto parte do terreno e da rotina de quem vai usar o
+               espaço — não de uma planta padrão adaptada depois.</p>
+          </li>
+
+          <li class="why">
+            <svg class="why__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 3.5h16M12 3.5v6"/><path d="M12 9.5l4.2 5.2L12 21l-4.2-6.3z"/>
+            </svg>
+            <h3>Acompanhamento na obra</h3>
+            <p>Não entregamos só um PDF. Acompanhamos a execução para que o
+               projeto aprovado seja o que realmente se constrói.</p>
+          </li>
+
+          <li class="why">
+            <svg class="why__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12s3.7-6.5 10-6.5S22 12 22 12s-3.7 6.5-10 6.5S2 12 2 12z"/>
+              <circle cx="12" cy="12" r="2.8"/>
+            </svg>
+            <h3>Prévia realista antes de construir</h3>
+            <p>Visualização 3D do projeto, para decidir com segurança antes de
+               qualquer investimento em obra.</p>
+          </li>
+
+          <li class="why">
+            <svg class="why__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 21.2s7-6.4 7-11.4A7 7 0 0 0 5 9.8c0 5 7 11.4 7 11.4z"/>
+              <circle cx="12" cy="9.8" r="2.6"/>
+            </svg>
+            <h3>Atendimento local, em Lavras</h3>
+            <p>Estúdio presente na região, com visitas ao terreno e reuniões
+               presenciais quando o projeto pede.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== DEPOIMENTO ==============================
+       Texto mantido como placeholder de propósito: o copy determina que um
+       depoimento genérico ou inventado quebra a confiança do restante. -->
+  <section class="section on-dark" id="depoimento" aria-labelledby="depoimento-titulo">
+    <div class="wrap">
+      <figure class="voice">
+        <svg class="voice__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9.5 5.5C6.4 7 4.5 9.8 4.5 13.2c0 3.1 1.9 5.3 4.4 5.3 2.2 0 3.8-1.6 3.8-3.7 0-2-1.4-3.5-3.3-3.5-.4 0-.8 0-1.1.2.4-1.9 1.7-3.5 3.6-4.5z"/>
+          <path d="M19.5 5.5c-3.1 1.5-5 4.3-5 7.7 0 3.1 1.9 5.3 4.4 5.3 2.2 0 3.8-1.6 3.8-3.7 0-2-1.4-3.5-3.3-3.5-.4 0-.8 0-1.1.2.4-1.9 1.7-3.5 3.6-4.5z"/>
+        </svg>
+
+        <p class="eyebrow" id="depoimento-titulo">Quem já construiu com a gente</p>
+
+        <blockquote style="margin-top:var(--s5)">
+          <span class="tbd">"[Espaço reservado para depoimento real de um cliente da D'Arco —
+          uma frase específica sobre o processo ou o resultado costuma
+          convencer mais do que um elogio genérico.]"</span>
+        </blockquote>
+
+        <figcaption>
+          <p class="voice__name"><span class="tbd">[Nome do cliente]</span></p>
+          <p class="voice__role"><span class="tbd">[Tipo de projeto — ex: Residência em Lavras, MG]</span></p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== CHAMADA FINAL ============================== -->
+  <section class="section on-light close" aria-labelledby="cta-titulo">
+    <div class="wrap">
+      <div class="close__inner">
+        <h2 id="cta-titulo">
+          <span class="brk">Vamos desenhar </span>o seu próximo espaço?
+        </h2>
+        <p class="lead">
+          Conte um pouco sobre o terreno e a ideia que você tem em mente.
+          A partir daí, marcamos uma conversa sem compromisso.
+        </p>
+        <a class="btn btn--primary" href="https://wa.me/5535999436335?text=Ol%C3%A1%21%20Tenho%20um%20terreno%20e%20uma%20ideia%20em%20mente%20e%20gostaria%20de%20conversar%20com%20a%20D%27Arco."
+           target="_blank" rel="noopener">Falar com a D'Arco</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================ RODAPÉ ================================ -->
+<footer class="footer" id="contato">
+  <div class="wrap">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <!-- PROVISÓRIO: aguardando arquivo de logo com transparência real. -->
+        <span class="brand">
+          <span class="brand__name">D'Arco</span>
+          <span class="brand__sub">Arquitetura</span>
+        </span>
+        <address>
+          Lavras, MG<br>
+          R. das Peróbas, 21 — Centenário, Lavras, MG, 37203-694<br>
+          <a href="tel:+5535999436335">(35) 99943-6335</a><br>
+          <span class="tbd">[E-mail]</span>
+        </address>
+      </div>
+
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegação</h2>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#estudio">Estúdio</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Processo</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__social">
+        <h2>Redes sociais</h2>
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/darco.arquitetura/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/>
+              </svg>
+              @darco.arquitetura
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/5535999436335" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 20.5l1.3-4.6A8.2 8.2 0 1 1 8.2 19z"/>
+                <path d="M8.9 8.4c.6-.1.9.1 1.1.6l.5 1.2c.1.3.1.5-.1.8l-.4.5c-.2.2-.2.4-.1.6a6 6 0 0 0 2.5 2.4c.2.1.4.1.6-.1l.5-.5c.2-.2.5-.3.8-.2l1.2.5c.5.2.7.5.6 1.1a1.9 1.9 0 0 1-1.9 1.5 8 8 0 0 1-6-6 1.9 1.9 0 0 1 1.5-1.9z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__base">
+      <p>© 2026 D'Arco Arquitetura. Todos os direitos reservados.</p>
+      <p>Lavras, Minas Gerais</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------- Entrada do hero ---------------- */
+  var hero = document.querySelector(".hero");
+  if (hero) requestAnimationFrame(function () { hero.classList.add("is-ready"); });
+
+  /* ---------------- Vídeo de fundo do hero ----------------
+     Só carrega em telas ≥768px e sem preferência por movimento reduzido.
+     Abaixo disso a foto-cartaz permanece — 3,5 MB não descem no celular. */
+  var video = document.getElementById("hero-video");
+  var vToggle = document.getElementById("video-toggle");
+
+  if (video && vToggle) {
+    var wide = window.matchMedia("(min-width: 768px)").matches;
+    var saveData = navigator.connection && navigator.connection.saveData;
+
+    var setToggle = function (paused) {
+      vToggle.setAttribute("data-paused", String(paused));
+      vToggle.setAttribute("aria-label", paused ? "Reproduzir vídeo de fundo" : "Pausar vídeo de fundo");
+    };
+
+    video.addEventListener("playing", function () {
+      video.classList.add("is-playing");
+      vToggle.hidden = false;
+      setToggle(false);
+    });
+
+    vToggle.addEventListener("click", function () {
+      if (video.paused) { video.play(); setToggle(false); }
+      else { video.pause(); setToggle(true); }
+    });
+
+    var carregar = function () {
+      if (video.src) return;
+      video.src = video.dataset.src;
+      var attempt = video.play();
+      if (attempt && attempt.catch) {
+        // Autoplay recusado pelo navegador: a foto-cartaz continua valendo
+        // e o botão vira "reproduzir", em vez de sumir sem explicação.
+        attempt.catch(function () {
+          vToggle.hidden = false;
+          setToggle(true);
+        });
+      }
+    };
+
+    if (wide && !reduce && !saveData) carregar();
+
+    // Janela aberta estreita e depois alargada: o vídeo ainda entra.
+    if (!reduce && !saveData) {
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 768) carregar();
+      }, { passive: true });
+    }
+  }
+
+  /* ---------------- Cabeçalho fixo ---------------- */
+  var header = document.querySelector(".header");
+  var onScroll = function () {
+    header.classList.toggle("is-stuck", window.scrollY > 24);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---------------- Menu mobile ---------------- */
+  var burger = document.getElementById("burger");
+  var menu = document.getElementById("menu-mobile");
+
+  // Tudo que fica atrás do painel sai da ordem de tabulação enquanto ele
+  // está aberto. Só o painel e o próprio botão seguem alcançáveis.
+  var atras = [
+    document.querySelector(".skip"),
+    document.querySelector("main"),
+    document.querySelector(".footer")
+  ].filter(Boolean);
+
+  function setMenu(open) {
+    atras.forEach(function (el) { el.inert = open; });
+    menu.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Fechar menu de navegação" : "Abrir menu de navegação");
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      // No mesmo tique o painel ainda está com visibility:hidden e o foco
+      // seria recusado — por isso espera o próximo quadro.
+      requestAnimationFrame(function () {
+        var first = menu.querySelector("a");
+        if (first) first.focus();
+      });
+    }
+  }
+
+  // Reserva para navegadores sem suporte a inert.
+  if (!("inert" in HTMLElement.prototype)) {
+    document.addEventListener("focusin", function (e) {
+      if (burger.getAttribute("aria-expanded") !== "true") return;
+      if (menu.contains(e.target) || e.target === burger) return;
+      var first = menu.querySelector("a");
+      if (first) setTimeout(function () { first.focus(); }, 0);
+    });
+  }
+
+  burger.addEventListener("click", function () {
+    setMenu(burger.getAttribute("aria-expanded") !== "true");
+  });
+
+  menu.addEventListener("click", function (e) {
+    if (e.target.closest("a")) setMenu(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      burger.focus();
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 1024 && burger.getAttribute("aria-expanded") === "true") setMenu(false);
+  });
+
+  /* ---------------- Seção ativa no menu ---------------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav a[href^='#']"));
+  var targets = links
+    .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window && targets.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + entry.target.id;
+          if (on) { a.setAttribute("aria-current", "true"); }
+          else { a.removeAttribute("aria-current"); }
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    targets.forEach(function (t) { spy.observe(t); });
+  }
+
+  /* ---------------- Contagem dos números ---------------- */
+  var nums = Array.prototype.slice.call(document.querySelectorAll("[data-count-to]"));
+  if (nums.length && "IntersectionObserver" in window && !reduce) {
+    nums.forEach(function (el) { el.textContent = "0" + (el.dataset.suffix || ""); });
+
+    var countObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(entry.target);
+
+        var el = entry.target;
+        var end = parseInt(el.dataset.countTo, 10);
+        var suffix = el.dataset.suffix || "";
+        var dur = 1400;
+        var t0 = null;
+
+        function tick(t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(end * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.45 });
+
+    nums.forEach(function (el) { countObs.observe(el); });
+  }
+
+  /* ---------------- Prancha do processo ----------------
+     Cada etapa que entra em foco acende sua camada de desenho.
+     As camadas anteriores permanecem acesas: o desenho se acumula. */
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var layers = Array.prototype.slice.call(document.querySelectorAll(".ly"));
+  var stageLabel = document.getElementById("plate-stage");
+  var current = 0;
+
+  function showStage(n) {
+    if (n === current) return;
+    current = n;
+    layers.forEach(function (g) {
+      g.classList.toggle("is-on", parseInt(g.dataset.layer, 10) <= n);
+    });
+    steps.forEach(function (s) {
+      s.classList.toggle("is-active", parseInt(s.dataset.step, 10) === n);
+    });
+    if (stageLabel) {
+      stageLabel.textContent = ("0" + Math.max(n, 1)).slice(-2) + " / 05";
+    }
+  }
+
+  if (steps.length && "IntersectionObserver" in window) {
+    var stepObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) showStage(parseInt(entry.target.dataset.step, 10));
+      });
+    }, { rootMargin: "-35% 0px -45% 0px" });
+    steps.forEach(function (s) { stepObs.observe(s); });
+    showStage(1);
+  } else {
+    showStage(5);
+  }
+})();
+</script>
+
+</body>
+</html>

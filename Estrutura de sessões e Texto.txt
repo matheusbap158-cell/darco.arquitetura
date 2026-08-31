@@ -1,0 +1,314 @@
+# Copy — Landing Page D'Arco Arquitetura
+
+> Estúdio de arquitetura em Lavras, MG. Estrutura de seções baseada em referências de landing pages premium do setor (arquitetura/construção de alto padrão). Texto pronto para diagramação — pontos entre `[ ]` são dados reais que só o cliente tem.
+
+---
+
+## 1. Menu (header)
+
+```
+Início   Projetos   Estúdio   Serviços   Processo   Contato        [Fale conosco]
+```
+
+---
+
+## 2. Hero
+
+**Rótulo (eyebrow)**
+```
+Arquitetura em Lavras, MG
+```
+
+**Título (H1)**
+```
+Projetos que continuam
+fazendo sentido
+depois de prontos.
+```
+
+**Subtítulo**
+```
+A D'Arco Arquitetura desenha residências e espaços comerciais que unem
+identidade, funcionalidade e execução cuidada — do primeiro esboço à
+última demão de tinta.
+```
+
+**Botão primário**
+```
+Ver projetos
+```
+
+**Botão secundário**
+```
+Agendar conversa
+```
+
+---
+
+## 3. Barra de números (prova rápida)
+
+```
+[X]+              [X]              [X]              100%
+Anos de atuação    Projetos          Cidades          Obras
+                   entregues         atendidas         acompanhadas
+```
+
+> Preencha com dados reais. Se o estúdio for recente, troque "anos de atuação" por algo que já seja verdadeiro hoje — por exemplo, formação, especialização ou número de projetos em andamento. Autoridade não exige tempo de mercado; exige que todo número ali seja verificável.
+
+---
+
+## 4. Sobre o estúdio
+
+**Rótulo**
+```
+O estúdio
+```
+
+**Título (H2)**
+```
+Arquitetura pensada
+para quem vai viver nela
+```
+
+**Corpo**
+```
+A D'Arco nasceu em Lavras com um princípio simples: um projeto bom é
+aquele que resolve a vida de quem mora ou trabalha ali — antes de
+resolver qualquer tendência.
+
+Trabalhamos lado a lado com cada cliente, do estudo do terreno à
+escolha do último acabamento, para que cada espaço reflita quem o
+habita, não um catálogo de referências prontas.
+
+Atendemos projetos residenciais e comerciais em Lavras e região,
+sempre com acompanhamento próximo — porque arquitetura de verdade
+se decide na obra, não só na prancheta.
+```
+
+**Bloco lateral (citação ou princípio)**
+```
+"Um projeto bem-feito não chama atenção para si.
+Chama atenção para a vida de quem mora nele."
+```
+
+---
+
+## 5. Serviços
+
+**Rótulo**
+```
+O que fazemos
+```
+
+**Título (H2)**
+```
+Do conceito à entrega
+das chaves
+```
+
+**Subtítulo**
+```
+Cada etapa do projeto sob o mesmo olhar, para que nada se perca
+na tradução entre o desenho e a obra.
+```
+
+**Cards de serviço**
+
+```
+① Projeto arquitetônico
+Estudo preliminar, anteprojeto e projeto executivo — com todas as
+pranchas necessárias para aprovação na prefeitura e para a obra.
+
+② Reforma e ampliação
+Projetos que respeitam o que já existe e resolvem o que não
+funciona mais, sem demolir memória por capricho.
+
+③ Interiores
+Marcenaria, iluminação e acabamentos desenhados junto com a
+arquitetura — não como uma etapa à parte, pensada depois.
+
+④ Projetos comerciais
+Espaços para lojas, escritórios e clínicas que comunicam a marca
+do cliente antes de qualquer placa na porta.
+
+⑤ Prévia 3D
+Visualização realista do projeto antes da primeira parede erguida,
+para decidir com segurança o que vai ficar de pé.
+
+⑥ Acompanhamento de obra
+Visitas periódicas e compatibilização com a engenharia, para que o
+que foi desenhado seja o que efetivamente se constrói.
+```
+
+---
+
+## 6. Processo
+
+**Rótulo**
+```
+Como trabalhamos
+```
+
+**Título (H2)**
+```
+Uma jornada clara,
+do primeiro encontro à entrega
+```
+
+**Etapas**
+```
+01 — Conversa inicial
+Entendemos o terreno, a rotina de quem vai usar o espaço e o
+orçamento disponível, antes de desenhar qualquer linha.
+
+02 — Conceito
+Apresentamos a ideia central do projeto: volumetria, organização
+dos ambientes e a lógica que vai guiar todas as decisões seguintes.
+
+03 — Desenvolvimento
+Detalhamos plantas, cortes, fachadas e especificações técnicas até
+o projeto estar pronto para aprovação e para a obra.
+
+04 — Aprovação e execução
+Cuidamos da documentação junto à prefeitura e acompanhamos o
+início da construção lado a lado com a equipe de obra.
+
+05 — Entrega
+Vistoria final, ajustes de acabamento e entrega das chaves — com
+o projeto original preservado do papel à realidade.
+```
+
+---
+
+## 7. Projetos em destaque
+
+**Rótulo**
+```
+Portfólio
+```
+
+**Título (H2)**
+```
+Projetos que já
+saíram do papel
+```
+
+**Botão do bloco**
+```
+Ver todos os projetos
+```
+
+**Cards de projeto** *(estrutura — nome e dados reais dependem do portfólio do cliente)*
+```
+[Nome do Projeto 1]
+[Bairro/Cidade] · [Metragem] m²
+
+[Nome do Projeto 2]
+[Bairro/Cidade] · [Metragem] m²
+
+[Nome do Projeto 3]
+[Bairro/Cidade] · [Metragem] m²
+```
+
+---
+
+## 8. Diferenciais — por que escolher a D'Arco
+
+**Rótulo**
+```
+Por que a D'Arco
+```
+
+**Título (H2)**
+```
+Atenção que não termina
+na entrega do projeto
+```
+
+**Blocos**
+```
+Projeto sob medida
+Cada projeto parte do terreno e da rotina de quem vai usar o
+espaço — não de uma planta padrão adaptada depois.
+
+Acompanhamento na obra
+Não entregamos só um PDF. Acompanhamos a execução para que o
+projeto aprovado seja o que realmente se constrói.
+
+Prévia realista antes de construir
+Visualização 3D do projeto, para decidir com segurança antes de
+qualquer investimento em obra.
+
+Atendimento local, em Lavras
+Estúdio presente na região, com visitas ao terreno e reuniões
+presenciais quando o projeto pede.
+```
+
+---
+
+## 9. Depoimento
+
+**Rótulo**
+```
+Quem já construiu com a gente
+```
+
+**Bloco de depoimento** *(placeholder — substituir por depoimento real de cliente)*
+```
+"[Espaço reservado para depoimento real de um cliente da D'Arco —
+uma frase específica sobre o processo ou o resultado costuma
+convencer mais do que um elogio genérico.]"
+
+[Nome do cliente]
+[Tipo de projeto — ex: Residência em Lavras, MG]
+```
+
+---
+
+## 10. Chamada final (CTA)
+
+**Título (H2)**
+```
+Vamos desenhar
+o seu próximo espaço?
+```
+
+**Subtítulo**
+```
+Conte um pouco sobre o terreno e a ideia que você tem em mente.
+A partir daí, marcamos uma conversa sem compromisso.
+```
+
+**Botão**
+```
+Falar com a D'Arco
+```
+
+---
+
+## 11. Rodapé / Contato
+
+```
+D'ARCO ARQUITETURA
+Lavras, MG
+
+[Endereço completo, se houver escritório físico]
+[Telefone / WhatsApp]
+[E-mail]
+
+Navegação
+Início · Projetos · Estúdio · Serviços · Processo · Contato
+
+Redes sociais
+[Instagram] · [Facebook] · [LinkedIn]
+
+© 2026 D'Arco Arquitetura. Todos os direitos reservados.
+```
+
+---
+
+## Notas para a próxima etapa
+
+- Todo texto entre `[ ]` precisa ser substituído por dado real do cliente antes de ir ao ar — não publique com placeholder visível.
+- Se a D'Arco ainda não tiver portfólio fotografado profissionalmente, o bloco 7 (Projetos em destaque) é o primeiro a sofrer — considere abrir com menos projetos, mas com fotos boas, em vez de muitos projetos com fotos fracas.
+- O bloco 9 (depoimento) só deve entrar se houver um depoimento real. Depoimento genérico ou inventado quebra a confiança que o resto do texto constrói.

@@ -1,0 +1,450 @@
+# Design System — Empresa de Arquitetura
+
+> Extraído a partir de 7 referências de identidade visual (arquitetura, construção de alto padrão, imóveis de luxo e mobiliário premium).
+> **Objetivo do sistema:** gerar autoridade. Cada decisão abaixo serve a uma pergunta: *isso faz o estúdio parecer maior, mais experiente e mais caro do que a concorrência?*
+
+---
+
+## 0. Leitura do estilo
+
+As referências convergem para um **luxo escuro e materialista**: fundos grafite quase pretos, iluminação âmbar quente vinda das próprias fotos de projeto, e um acento dourado usado com parcimônia — nunca como enfeite, sempre como sinalização de valor (preço, CTA, número de projetos entregues). A tipografia é o segundo protagonista: serifas de alto contraste em títulos grandes, respirando, contra um sans neutro e discreto no corpo.
+
+O sistema não vende "moderninho" nem "tech". Vende **permanência, materialidade e discrição** — o mesmo território visual de joalheria e hotelaria de alto padrão, aplicado a concreto, madeira e vidro. A alternância entre seções escuras (obra, portfólio, prova social) e seções em areia clara (processo, serviços, texto longo) é o mecanismo central de ritmo.
+
+---
+
+## 1. Cores
+
+### 1.1 Paleta principal — bases
+
+| Token | Nome | Hex | Uso |
+|---|---|---|---|
+| `--base-900` | Grafite Profundo | `#12100E` | Fundo principal das seções escuras, hero, footer |
+| `--base-800` | Grafite | `#1C1A17` | Superfícies elevadas: cards, barra de estatísticas, dropdowns |
+| `--base-700` | Grafite Elevado | `#262320` | Hover de cards, estados ativos, bordas internas em fundo escuro |
+| `--sand-050` | Areia Clara | `#F4F1EC` | Fundo das seções claras (serviços, processo, artigos) |
+| `--sand-100` | Areia | `#E8E2D8` | Cards e blocos dentro das seções claras |
+| `--sand-200` | Areia Média | `#D6CEC1` | Bordas, divisores e linhas de apoio em fundo claro |
+
+> **Regra de alternância:** nunca mais de duas seções escuras seguidas sem quebra clara. O contraste entre blocos é o que dá sensação de "site grande e bem editado".
+
+### 1.2 Acento — o dourado
+
+| Token | Nome | Hex | Uso |
+|---|---|---|---|
+| `--gold-500` | Ouro Arquitetônico | `#C4A265` | **Cor primária de ação.** Botões principais, números de destaque, ícones-chave |
+| `--gold-400` | Ouro Claro | `#DFC38C` | Hover de botões e links, texto dourado sobre fundo muito escuro |
+| `--gold-700` | Ouro Fosco | `#96793F` | Bordas de botões outline, linhas decorativas, estados pressionados |
+
+**Orçamento de dourado:** no máximo **3 usos visíveis por tela**. Um CTA, um dado numérico e um detalhe gráfico. Passou disso, vira dourado de convite de casamento e a autoridade cai.
+
+### 1.3 Cores de suporte
+
+| Token | Nome | Hex | Uso |
+|---|---|---|---|
+| `--bronze-500` | Bronze | `#A9714B` | Acento secundário, categorias de projeto, gráficos e ilustrações técnicas |
+| `--stone-500` | Pedra | `#6E6A63` | Ícones neutros, metadados, estados desativados |
+
+### 1.4 Texto
+
+**Sobre fundo escuro**
+- Primário: `#F2EFE9`
+- Secundário: `#B0A99E`
+- Terciário / metadados: `#7A736A`
+
+**Sobre fundo claro**
+- Primário: `#1C1A17`
+- Secundário: `#55504A`
+- Terciário / metadados: `#8A837A`
+
+### 1.5 Cores de estado
+
+Deliberadamente dessaturadas para não brigar com a paleta terrosa. Nada de verde-neon ou vermelho-alarme.
+
+| Estado | Hex | Fundo suave (10%) |
+|---|---|---|
+| Sucesso | `#6E8B5C` | `#6E8B5C1A` |
+| Erro | `#A5462F` | `#A5462F1A` |
+| Alerta | `#C08A2E` | `#C08A2E1A` |
+| Informação | `#5A6E7A` | `#5A6E7A1A` |
+
+### 1.6 Contraste — combinações aprovadas
+
+✅ **Seguras para texto (AA ou melhor)**
+
+| Texto | Fundo | Razão aprox. |
+|---|---|---|
+| `#F2EFE9` | `#12100E` | ~16:1 |
+| `#B0A99E` | `#12100E` | ~8:1 |
+| `#C4A265` | `#12100E` | ~7,5:1 |
+| `#12100E` | `#C4A265` | ~7,5:1 — **botão dourado usa texto escuro, nunca branco** |
+| `#1C1A17` | `#F4F1EC` | ~15:1 |
+| `#55504A` | `#F4F1EC` | ~7:1 |
+
+⚠️ **Proibidas para texto**
+
+| Combinação | Problema | Onde ainda pode usar |
+|---|---|---|
+| `#C4A265` sobre `#F4F1EC` | ~2,1:1 — ilegível | Só ícones grandes, linhas e formas decorativas |
+| `#F2EFE9` sobre `#C4A265` | ~2,2:1 | Nunca |
+| `#7A736A` sobre `#1C1A17` | ~4:1 — limítrofe | Só metadados a partir de 16px |
+
+**Texto sobre foto:** toda imagem que recebe texto leva um overlay obrigatório — gradiente de `#12100E` a 85% (base) até transparente (topo), altura mínima de 60% do bloco. Sem overlay, o hero quebra em fotos claras.
+
+---
+
+## 2. Tipografia
+
+### 2.1 Famílias
+
+| Papel | Fonte (Google Fonts) | Alternativa | Por quê |
+|---|---|---|---|
+| **Display / títulos** | **Cormorant Garamond** | Fraunces | Serifa de alto contraste, traço fino e elegante em tamanhos grandes — é o que dá o ar de "estúdio consolidado" das referências |
+| **Corpo / interface** | **Manrope** | Inter | Sans geométrico neutro, ótima leitura em texto corrido e em rótulos pequenos |
+
+Duas famílias, nunca três. O Cormorant só respira acima de 24px — **abaixo disso, tudo é Manrope**, inclusive subtítulos.
+
+### 2.2 Hierarquia — desktop
+
+| Nível | Fonte | Tamanho | Peso | Altura de linha | Espaçamento |
+|---|---|---|---|---|---|
+| H1 | Cormorant | 64px | 600 | 1.05 | -0.02em |
+| H2 | Cormorant | 44px | 600 | 1.15 | -0.01em |
+| H3 | Cormorant | 30px | 600 | 1.25 | 0 |
+| H4 | Manrope | 20px | 600 | 1.35 | 0 |
+| Corpo grande | Manrope | 18px | 400 | 1.65 | 0 |
+| Corpo | Manrope | 16px | 400 | 1.70 | 0 |
+| Corpo pequeno | Manrope | 14px | 400 | 1.60 | 0 |
+| Legenda / metadado | Manrope | 13px | 500 | 1.50 | 0.01em |
+| Rótulo de seção | Manrope | 12px | 600 | 1.40 | 0.14em, caixa alta |
+| Botão | Manrope | 15px | 600 | 1 | 0.02em |
+
+### 2.3 Hierarquia — mobile (até 768px)
+
+| Nível | Tamanho | Altura de linha |
+|---|---|---|
+| H1 | 40px | 1.10 |
+| H2 | 30px | 1.20 |
+| H3 | 24px | 1.30 |
+| Corpo | 16px | 1.70 |
+
+### 2.4 Regras de composição
+
+- **Largura de linha:** máximo 68 caracteres no corpo de texto. Parágrafos largos matam a sensação de curadoria.
+- **Títulos grandes ganham quebra manual.** Um H1 de hero é composto em 2–3 linhas escolhidas, não deixado à sorte do container.
+- **Números são o dourado narrativo.** Estatísticas ("15+ anos", "320 projetos") vão em Cormorant, tamanho grande, em `--gold-500`, com o rótulo em Manrope 12px caixa alta abaixo. É o elemento de autoridade mais barato e mais eficaz do sistema.
+- **Rótulo de seção em caixa alta** é permitido — vem direto das referências —, mas só um por seção e sempre acima do H2, nunca acima de parágrafos soltos.
+
+---
+
+## 3. Componentes
+
+### 3.1 Botões
+
+Altura padrão **48px** (desktop) / **44px** (mobile). Raio de **6px**.
+
+**Primário — dourado sólido**
+```
+padding: 16px 32px
+background: #C4A265
+color: #12100E
+border: nenhuma
+font: Manrope 600, 15px, 0.02em
+```
+- `hover` → fundo `#DFC38C`, elevação sutil (translateY -1px)
+- `active` → fundo `#96793F`, sem deslocamento
+- `focus-visible` → contorno 2px `#DFC38C`, offset 3px
+- `disabled` → fundo `#6E6A63`, texto `#B0A99E`, cursor `not-allowed`
+
+**Secundário — outline**
+```
+padding: 15px 31px   /* 1px a menos por causa da borda */
+background: transparente
+color: #F2EFE9 (fundo escuro) | #1C1A17 (fundo claro)
+border: 1px solid rgba(196,162,101,0.45)
+```
+- `hover` → borda `#C4A265` sólida, fundo `rgba(196,162,101,0.08)`
+- `disabled` → borda e texto em `#6E6A63`
+
+**Ghost — link de ação**
+```
+padding: 12px 0
+background: transparente
+color: #C4A265
+border-bottom: 1px solid rgba(196,162,101,0.35)
+```
+- `hover` → borda inferior sólida `#C4A265`, texto `#DFC38C`
+
+**Pill (hero e header)** — mesma anatomia do primário/secundário, mas `border-radius: 999px`. Usar **só** no hero e no botão fixo do menu, para criar um sinal de "ação principal do site". Não espalhar.
+
+> **Sem setas "→" em texto de botão.** Se precisar de direção, use um ícone real de seta em um círculo separado, como nos cards de projeto das referências.
+
+### 3.2 Inputs de formulário
+
+Altura **52px**, raio **6px**, mesma largura de campo em todo o formulário.
+
+```
+padding: 14px 16px
+background: rgba(255,255,255,0.03)   /* fundo escuro */
+         | #FFFFFF                    /* fundo claro */
+border: 1px solid #262320             /* escuro */
+      | 1px solid #D6CEC1             /* claro */
+color: #F2EFE9 | #1C1A17
+font: Manrope 400, 16px               /* 16px evita zoom no iOS */
+```
+
+- **Rótulo:** sempre visível acima do campo, Manrope 13px/500, cor secundária. Placeholder não substitui rótulo.
+- **Placeholder:** cor terciária (`#7A736A` / `#8A837A`), exemplo real do dado esperado — "Rua, número e cidade da obra", não "Digite aqui".
+- **`focus`** → borda `#C4A265`, sombra `0 0 0 3px rgba(196,162,101,0.15)`. Sem `outline: none` sem substituto.
+- **`error`** → borda `#A5462F` + mensagem abaixo em 13px dizendo o que corrigir ("Informe um telefone com DDD"), nunca "Campo inválido".
+- **`disabled`** → fundo `#1C1A17`, texto `#6E6A63`.
+- **Select e textarea** herdam a mesma anatomia; textarea com `min-height: 120px` e `resize: vertical`.
+
+### 3.3 Cards
+
+Três variações, cada uma com um trabalho diferente:
+
+**A. Card de projeto (foto dominante)**
+```
+border-radius: 12px
+overflow: hidden
+background: #1C1A17
+```
+- Imagem em `aspect-ratio: 4/5` (vertical) ou `16/10` (horizontal), `object-fit: cover`
+- Overlay em gradiente na base para o texto
+- Conteúdo: nome do projeto (H4), local + metragem (13px, cor terciária)
+- Ícone de seta em círculo de 36px, canto inferior direito, borda `rgba(242,239,233,0.25)`
+- `hover` → imagem em `scale(1.03)` com transição de 400ms, borda do círculo em `#C4A265`
+
+**B. Card de serviço (ícone + texto)**
+```
+padding: 32px 24px
+border-radius: 8px
+background: #1C1A17
+border: 1px solid #262320
+```
+- Ícone de linha (stroke 1.5px) em `#C4A265`, 32px, no topo
+- Título H4 + descrição em corpo pequeno, cor secundária
+- `hover` → borda `rgba(196,162,101,0.4)`, fundo `#262320`
+
+**C. Card de dado / prova social**
+```
+padding: 24px 32px
+border-radius: 8px
+background: transparente
+border-left: 1px solid #262320   /* divisor entre itens de uma linha */
+```
+- Número em Cormorant 40px `#C4A265` + rótulo 12px caixa alta
+- Sem sombra, sem fundo. É informação, não caixa.
+
+> **Não use o mesmo card para tudo.** O erro mais comum é aplicar `border-radius: 12px` + sombra igual em projeto, serviço e depoimento. Aqui, hierarquia diferente = anatomia diferente.
+
+---
+
+## 4. Estética geral
+
+### 4.1 Border-radius
+
+Escala curta e intencional — quanto maior o elemento, maior o raio:
+
+| Token | Valor | Aplicação |
+|---|---|---|
+| `--radius-xs` | 4px | Tags, badges, checkbox |
+| `--radius-sm` | 6px | Botões, inputs, selects |
+| `--radius-md` | 12px | Cards de projeto, blocos de imagem |
+| `--radius-lg` | 20px | Blocos de seção inteira (barra de estatísticas flutuante, bloco "por que nós") |
+| `--radius-full` | 999px | Botão do hero, avatares, ícones circulares |
+
+Cantos **suaves, nunca retos**. Raio zero neste sistema lê como brutalismo/jornal — território visual errado para o objetivo.
+
+### 4.2 Sombras
+
+Fundo escuro engole sombra. Aqui, **profundidade vem de mudança de cor de superfície, não de sombra**.
+
+| Token | Valor | Quando |
+|---|---|---|
+| `--shadow-none` | `none` | Padrão de 90% dos elementos |
+| `--shadow-sm` | `0 2px 8px rgba(0,0,0,0.25)` | Cards em fundo claro (areia) |
+| `--shadow-lg` | `0 24px 60px rgba(0,0,0,0.45)` | Só elementos flutuantes: barra de estatísticas sobre o hero, menu aberto, modal |
+| `--shadow-glow` | `0 8px 24px rgba(196,162,101,0.20)` | Exclusivo do botão primário em `hover` |
+
+Proibido: a sombra cinza genérica `rgba(0,0,0,0.1)` embaixo de todo card. É o tell visual mais óbvio de template.
+
+### 4.3 Espaçamento e grid
+
+**Base de 8px.** Toda medida é múltiplo de 8 (exceções permitidas: 4px em detalhes internos, e o 1px de borda).
+
+| Token | Valor |
+|---|---|
+| `--space-1` | 4px |
+| `--space-2` | 8px |
+| `--space-3` | 16px |
+| `--space-4` | 24px |
+| `--space-5` | 32px |
+| `--space-6` | 48px |
+| `--space-7` | 64px |
+| `--space-8` | 96px |
+| `--space-9` | 128px |
+
+**Ritmo vertical**
+
+| Contexto | Desktop | Mobile |
+|---|---|---|
+| Padding vertical de seção | 128px | 64px |
+| Título de seção → conteúdo | 48px | 32px |
+| Entre cards de um grid | 24px | 16px |
+| Dentro de um card | 24–32px | 20px |
+
+**Grid**
+- Container: `max-width: 1280px`, gutter lateral de 24px (16px no mobile)
+- 12 colunas, gap de 24px
+- Grid de projetos: 3 colunas desktop → 2 tablet → 1 mobile
+- Grid de serviços: 4–5 colunas desktop → 2 tablet → 1 mobile
+
+**Regra de ouro do espaço:** em site que vende autoridade, o espaço em branco é o item mais caro da página. Na dúvida entre 64px e 96px de respiro, escolha 96px.
+
+### 4.4 Imagem e ícones
+
+- **Fotografia:** projetos reais, luz quente de fim de tarde ou noturna com iluminação embutida acesa. Sem stock genérico, sem render frio azulado. Se ainda não há portfólio fotografado profissionalmente, isso é a primeira despesa antes do site.
+- **Tratamento:** leve dessaturação (~90%) e temperatura quente uniformizada, para que fotos de obras diferentes pareçam da mesma marca.
+- **Ícones:** linha, stroke 1.5px, cantos arredondados, tamanho 24px ou 32px. Nunca ícones preenchidos, nunca coloridos.
+
+### 4.5 Movimento
+
+Um momento orquestrado por página, não efeito em tudo.
+
+- Entrada do hero: fade + subida de 16px, 600ms, escalonado em 3 elementos (rótulo → título → CTA). **Só no hero.**
+- Interações: 200ms `ease-out` em botões, 400ms em zoom de imagem.
+- `prefers-reduced-motion: reduce` → todas as transições caem para 0.01ms.
+
+---
+
+## 5. Aplicação prática
+
+### 5.1 Hero — wireframe
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  LOGO          Projetos  Estúdio  Processo  Contato  [Falar] │  ← header sobre a foto,
+│                                                              │    fundo transparente
+│                                                              │
+│   ARQUITETURA RESIDENCIAL                                    │  ← rótulo 12px, ouro
+│                                                              │
+│   Projetos que continuam                                     │  ← H1 Cormorant 64px
+│   fazendo sentido em                                         │    branco-areia
+│   vinte anos.                                                │
+│                                                              │
+│   Estúdio em [cidade] com 14 anos dedicados a                │  ← corpo 18px, secundário
+│   residências de alto padrão do croqui à entrega.            │    máx. 60ch
+│                                                              │
+│   [ Ver projetos ]                                           │  ← botão pill dourado
+│                                                              │
+│              [ foto noturna do projeto, overlay ]            │
+├──────────────────────────────────────────────────────────────┤
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  14 anos  │  120 projetos  │  8 prêmios  │  100% obra  │  │  ← barra flutuante,
+│  └────────────────────────────────────────────────────────┘  │    sobrepõe -60px
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Tokens aplicados:** fundo `--base-900` + foto com overlay 85%→0. Rótulo `--gold-500`. H1 `#F2EFE9`. Corpo `#B0A99E`. Botão `--gold-500` com texto `--base-900`, raio `--radius-full`. Barra de estatísticas: `--base-800`, `--radius-lg`, `--shadow-lg`, números em Cormorant 40px `--gold-500`, rótulos 12px caixa alta `#7A736A`, divisores 1px `#262320`. Padding de seção `--space-9`.
+
+**Por que funciona para autoridade:** a promessa está no tempo ("vinte anos"), não no adjetivo ("incrível"). Os números aparecem antes de qualquer pedido — a prova vem antes do CTA secundário.
+
+### 5.2 Card de projeto — anatomia
+
+```
+┌─────────────────────────────┐
+│                             │
+│                             │
+│         [ foto 4:5 ]        │   background: #1C1A17
+│                             │   border-radius: 12px
+│   ░░░ gradiente ░░░░░░░░░   │   overflow: hidden
+│                             │
+│  Casa Ipê              (→)  │   ← H4 Manrope 20px/600 #F2EFE9
+│  Lavras, MG · 420 m²        │   ← 13px #B0A99E
+└─────────────────────────────┘   ← círculo 36px, borda rgba(242,239,233,.25)
+```
+
+Padding interno do bloco de texto: 24px. Gap entre título e metadado: 8px. No `hover`: imagem `scale(1.03)` em 400ms, borda do círculo vira `--gold-500`. Sem sombra.
+
+### 5.3 Tokens em CSS
+
+```css
+:root {
+  /* Bases */
+  --base-900: #12100E;
+  --base-800: #1C1A17;
+  --base-700: #262320;
+  --sand-050: #F4F1EC;
+  --sand-100: #E8E2D8;
+  --sand-200: #D6CEC1;
+
+  /* Acento */
+  --gold-400: #DFC38C;
+  --gold-500: #C4A265;
+  --gold-700: #96793F;
+  --bronze-500: #A9714B;
+  --stone-500: #6E6A63;
+
+  /* Texto sobre escuro */
+  --text-on-dark: #F2EFE9;
+  --text-on-dark-2: #B0A99E;
+  --text-on-dark-3: #7A736A;
+
+  /* Texto sobre claro */
+  --text-on-light: #1C1A17;
+  --text-on-light-2: #55504A;
+  --text-on-light-3: #8A837A;
+
+  /* Estados */
+  --success: #6E8B5C;
+  --error:   #A5462F;
+  --warning: #C08A2E;
+  --info:    #5A6E7A;
+
+  /* Tipografia */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  /* Raio */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Espaço */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 16px;
+  --space-4: 24px;  --space-5: 32px;  --space-6: 48px;
+  --space-7: 64px;  --space-8: 96px;  --space-9: 128px;
+
+  /* Sombra */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.45);
+  --shadow-glow: 0 8px 24px rgba(196,162,101,0.20);
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: 24px;
+}
+```
+
+### 5.4 Checklist antes de publicar
+
+- [ ] Nenhuma tela tem mais de 3 usos visíveis de dourado
+- [ ] Todo texto sobre foto tem overlay
+- [ ] Nenhum botão dourado com texto branco
+- [ ] Cards de projeto, serviço e dado têm anatomias diferentes
+- [ ] Padding de seção ≥ 96px no desktop
+- [ ] Foco visível em todos os elementos navegáveis por teclado
+- [ ] Linha de corpo de texto abaixo de 68 caracteres
+- [ ] Fotos tratadas com a mesma temperatura de cor
+
+---
+
+## Resumo — tom visual em 3 linhas
+
+Luxo escuro e material: grafite quase preto como base, areia clara para respiro, e um dourado usado com economia de joalheiro.
+Serifa de alto contraste em títulos grandes contra sans neutro no corpo — a tipografia carrega a elegância, a cor apenas sinaliza.
+Muito espaço, poucas sombras, cantos suaves e fotografia noturna quente: a página deve parecer cara antes de dizer que é.

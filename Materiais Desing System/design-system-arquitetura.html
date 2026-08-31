@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Arquitetura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ===== BASES ===== */
+    --base-900:#12100E;
+    --base-800:#1C1A17;
+    --base-700:#262320;
+    --sand-050:#F4F1EC;
+    --sand-100:#E8E2D8;
+    --sand-200:#D6CEC1;
+
+    /* ===== ACENTO ===== */
+    --gold-400:#DFC38C;
+    --gold-500:#C4A265;
+    --gold-700:#96793F;
+    --bronze-500:#A9714B;
+    --stone-500:#6E6A63;
+    --gold-line:rgba(196,162,101,0.35);
+    --gold-line-soft:rgba(196,162,101,0.12);
+
+    /* ===== TEXTO ===== */
+    --text-on-dark:#F2EFE9;
+    --text-on-dark-2:#B0A99E;
+    --text-on-dark-3:#7A736A;
+    --text-on-light:#1C1A17;
+    --text-on-light-2:#55504A;
+    --text-on-light-3:#8A837A;
+
+    /* ===== ESTADOS ===== */
+    --success:#6E8B5C;
+    --error:#A5462F;
+    --warning:#C08A2E;
+    --info:#5A6E7A;
+
+    /* ===== RADIUS ===== */
+    --r-xs:4px; --r-sm:6px; --r-md:12px; --r-lg:20px; --r-full:999px;
+
+    /* ===== SOMBRAS ===== */
+    --shadow-sm:0 2px 8px rgba(0,0,0,0.25);
+    --shadow-lg:0 24px 60px rgba(0,0,0,0.45);
+    --shadow-glow:0 8px 24px rgba(196,162,101,0.20);
+
+    /* ===== ESPAÇO ===== */
+    --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px;
+    --s6:48px; --s7:64px; --s8:96px; --s9:128px;
+
+    /* ===== TIPOGRAFIA ===== */
+    --font-display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-body:"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --container:1180px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--base-900);
+    color:var(--text-on-dark-2);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 24px}
+
+  /* ============ HEADER ============ */
+  .masthead{
+    padding:var(--s8) 0 var(--s7);
+    border-bottom:1px solid var(--base-700);
+    background:radial-gradient(120% 120% at 15% 0%, #201C18 0%, var(--base-900) 62%);
+  }
+  .eyebrow{
+    font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold-500);
+  }
+  .masthead h1{
+    font-family:var(--font-display);
+    font-size:clamp(40px,6vw,64px);
+    font-weight:600;line-height:1.05;letter-spacing:-.02em;
+    color:var(--text-on-dark);
+    margin:var(--s4) 0 var(--s3);
+    max-width:16ch;
+  }
+  .masthead p{max-width:60ch;font-size:18px}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:var(--s5);
+    margin-top:var(--s6);padding-top:var(--s5);
+    border-top:1px solid var(--base-700);
+  }
+  .meta-row div{min-width:120px}
+  .meta-num{
+    font-family:var(--font-display);font-size:36px;font-weight:600;
+    line-height:1;color:var(--gold-500);
+  }
+  .meta-lbl{
+    font-size:12px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--text-on-dark-3);margin-top:var(--s2);
+  }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(18,16,14,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--base-700);
+  }
+  .nav ul{
+    display:flex;gap:var(--s5);list-style:none;
+    overflow-x:auto;padding:var(--s3) 24px;
+    max-width:var(--container);margin:0 auto;
+  }
+  .nav a{
+    color:var(--text-on-dark-3);text-decoration:none;
+    font-size:13px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;white-space:nowrap;
+    padding-bottom:4px;border-bottom:1px solid transparent;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .nav a:hover{color:var(--gold-500);border-bottom-color:var(--gold-line)}
+
+  /* ============ SEÇÕES ============ */
+  section{padding:var(--s8) 0;border-bottom:1px solid var(--base-700)}
+  .sec-num{
+    font-family:var(--font-display);font-size:14px;
+    color:var(--gold-700);letter-spacing:.1em;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-size:clamp(30px,4vw,44px);font-weight:600;
+    line-height:1.15;letter-spacing:-.01em;
+    color:var(--text-on-dark);margin:var(--s2) 0 var(--s3);
+  }
+  .section-sub{max-width:66ch;margin-bottom:var(--s6)}
+  h3.blk{
+    font-size:13px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--text-on-dark-3);
+    margin:var(--s6) 0 var(--s4);
+    padding-bottom:var(--s2);border-bottom:1px solid var(--base-700);
+  }
+
+  /* ============ CORES ============ */
+  .swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s3)}
+  .swatch{
+    border:1px solid var(--base-700);border-radius:var(--r-sm);
+    overflow:hidden;cursor:pointer;background:var(--base-800);
+    transition:border-color .2s ease,transform .2s ease;
+  }
+  .swatch:hover{border-color:var(--gold-line);transform:translateY(-2px)}
+  .swatch .chip{height:76px;display:block;position:relative}
+  .swatch .chip::after{
+    content:"clique p/ copiar";
+    position:absolute;inset:auto 8px 8px auto;
+    font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);opacity:0;transition:opacity .2s ease;
+  }
+  .swatch:hover .chip::after{opacity:1}
+  .swatch .info{padding:12px 14px}
+  .swatch .nm{font-size:13px;font-weight:600;color:var(--text-on-dark)}
+  .swatch .hx{font-size:12px;color:var(--text-on-dark-3);letter-spacing:.04em;margin-top:2px}
+  .swatch .use{font-size:11px;color:var(--text-on-dark-3);margin-top:6px;line-height:1.45}
+
+  /* ============ CONTRASTE ============ */
+  .contrast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--s3)}
+  .ct{padding:var(--s4);border-radius:var(--r-sm);border:1px solid var(--base-700)}
+  .ct .demo{font-size:17px;font-weight:600;margin-bottom:var(--s2)}
+  .ct .ratio{font-size:12px;letter-spacing:.06em;opacity:.75}
+  .badge{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 8px;border-radius:var(--r-xs);margin-bottom:var(--s3);
+  }
+  .b-ok{background:rgba(110,139,92,.2);color:#9DBE87;border:1px solid rgba(110,139,92,.4)}
+  .b-no{background:rgba(165,70,47,.18);color:#D98A72;border:1px solid rgba(165,70,47,.4)}
+
+  /* ============ TIPOGRAFIA ============ */
+  .type-row{
+    display:grid;grid-template-columns:150px 1fr;gap:var(--s5);
+    padding:var(--s4) 0;border-bottom:1px solid var(--base-700);align-items:baseline;
+  }
+  .type-spec{font-size:12px;color:var(--text-on-dark-3);line-height:1.7;letter-spacing:.03em}
+  .type-spec b{display:block;color:var(--gold-500);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+  .d1{font-family:var(--font-display);font-size:64px;font-weight:600;line-height:1.05;letter-spacing:-.02em;color:var(--text-on-dark)}
+  .d2{font-family:var(--font-display);font-size:44px;font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--text-on-dark)}
+  .d3{font-family:var(--font-display);font-size:30px;font-weight:600;line-height:1.25;color:var(--text-on-dark)}
+  .d4{font-size:20px;font-weight:600;line-height:1.35;color:var(--text-on-dark)}
+  .bd-lg{font-size:18px;line-height:1.65;color:var(--text-on-dark-2)}
+  .bd{font-size:16px;line-height:1.7;color:var(--text-on-dark-2)}
+  .bd-sm{font-size:14px;line-height:1.6;color:var(--text-on-dark-2)}
+  .cap{font-size:13px;font-weight:500;line-height:1.5;color:var(--text-on-dark-3)}
+  .lbl{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500)}
+
+  /* ============ BOTÕES ============ */
+  .btn-bar{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center;margin-bottom:var(--s4)}
+  .btn{
+    font-family:var(--font-body);font-size:15px;font-weight:600;letter-spacing:.02em;
+    padding:16px 32px;border-radius:var(--r-sm);border:none;cursor:pointer;
+    transition:background .2s ease,transform .2s ease,box-shadow .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .btn-primary{background:var(--gold-500);color:var(--base-900)}
+  .btn-primary:hover{background:var(--gold-400);transform:translateY(-1px);box-shadow:var(--shadow-glow)}
+  .btn-primary:active{background:var(--gold-700);transform:none;box-shadow:none}
+  .btn-primary:focus-visible{outline:2px solid var(--gold-400);outline-offset:3px}
+  .btn-outline{
+    background:transparent;color:var(--text-on-dark);
+    border:1px solid var(--gold-line);padding:15px 31px;
+  }
+  .btn-outline:hover{border-color:var(--gold-500);background:rgba(196,162,101,.08)}
+  .btn-ghost{
+    background:transparent;color:var(--gold-500);padding:12px 0;
+    border:none;border-bottom:1px solid var(--gold-line-soft);border-radius:0;
+  }
+  .btn-ghost:hover{color:var(--gold-400);border-bottom-color:var(--gold-500)}
+  .btn-pill{border-radius:var(--r-full)}
+  .btn:disabled{background:var(--stone-500);color:var(--text-on-dark-2);cursor:not-allowed;transform:none;box-shadow:none}
+  .btn-outline:disabled{background:transparent;border-color:var(--stone-500);color:var(--stone-500)}
+
+  /* ============ INPUTS ============ */
+  .field{margin-bottom:var(--s4);max-width:420px}
+  .field label{display:block;font-size:13px;font-weight:500;color:var(--text-on-dark-2);margin-bottom:var(--s2)}
+  .field input,.field select,.field textarea{
+    width:100%;height:52px;padding:14px 16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--base-700);border-radius:var(--r-sm);
+    color:var(--text-on-dark);font-family:var(--font-body);font-size:16px;
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .field textarea{height:auto;min-height:120px;resize:vertical;line-height:1.6}
+  .field input::placeholder,.field textarea::placeholder{color:var(--text-on-dark-3)}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--gold-500);
+    box-shadow:0 0 0 3px rgba(196,162,101,.15);
+  }
+  .field.is-error input{border-color:var(--error)}
+  .field .msg{font-size:13px;color:var(--error);margin-top:var(--s2)}
+  .field input:disabled{background:var(--base-800);color:var(--stone-500);cursor:not-allowed}
+
+  /* ============ CARDS ============ */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--s4)}
+
+  .card-proj{
+    background:var(--base-800);border-radius:var(--r-md);
+    overflow:hidden;cursor:pointer;
+  }
+  .card-proj .ph{
+    aspect-ratio:4/5;position:relative;
+    background:linear-gradient(160deg,#3A322A 0%,#241F1A 55%,#15120F 100%);
+    overflow:hidden;transition:transform .4s ease;
+  }
+  .card-proj:hover .ph{transform:scale(1.03)}
+  .card-proj .ph::before{
+    content:"";position:absolute;inset:auto 0 0 0;height:60%;
+    background:linear-gradient(to top,rgba(18,16,14,.92),transparent);
+  }
+  .card-proj .ph span{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-on-dark-3);
+  }
+  .card-proj .body{padding:var(--s4);display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s3)}
+  .card-proj .body h4{font-size:20px;font-weight:600;color:var(--text-on-dark);line-height:1.35}
+  .card-proj .body p{font-size:13px;color:var(--text-on-dark-2);margin-top:var(--s2)}
+  .arrow{
+    flex:none;width:36px;height:36px;border-radius:var(--r-full);
+    border:1px solid rgba(242,239,233,.25);display:grid;place-items:center;
+    color:var(--text-on-dark);font-size:14px;transition:border-color .2s ease,color .2s ease;
+  }
+  .card-proj:hover .arrow{border-color:var(--gold-500);color:var(--gold-500)}
+
+  .card-serv{
+    padding:32px 24px;border-radius:var(--r-sm);
+    background:var(--base-800);border:1px solid var(--base-700);
+    transition:border-color .2s ease,background .2s ease;
+  }
+  .card-serv:hover{border-color:var(--gold-line);background:var(--base-700)}
+  .card-serv .ic{
+    width:32px;height:32px;margin-bottom:var(--s4);
+    color:var(--gold-500);display:block;
+  }
+  .card-serv h4{font-size:20px;font-weight:600;color:var(--text-on-dark);margin-bottom:var(--s2)}
+  .card-serv p{font-size:14px;line-height:1.6;color:var(--text-on-dark-2)}
+
+  .stats-strip{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    background:var(--base-800);border-radius:var(--r-lg);
+    box-shadow:var(--shadow-lg);overflow:hidden;
+  }
+  .stat{padding:24px 32px;border-left:1px solid var(--base-700)}
+  .stat:first-child{border-left:none}
+  .stat .n{font-family:var(--font-display);font-size:40px;font-weight:600;line-height:1;color:var(--gold-500)}
+  .stat .l{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-on-dark-3);margin-top:var(--s2)}
+
+  /* ============ ESTÉTICA ============ */
+  .demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3)}
+  .demo-box{
+    background:var(--base-800);border:1px solid var(--base-700);
+    padding:var(--s4);text-align:center;
+  }
+  .demo-box .sq{
+    width:100%;height:64px;background:var(--gold-500);
+    margin-bottom:var(--s3);
+  }
+  .demo-box .nm{font-size:12px;font-weight:600;color:var(--text-on-dark);letter-spacing:.06em}
+  .demo-box .vl{font-size:11px;color:var(--text-on-dark-3);margin-top:3px}
+
+  .space-row{display:flex;align-items:center;gap:var(--s4);padding:10px 0}
+  .space-bar{height:14px;background:var(--gold-500);border-radius:2px;flex:none}
+  .space-lbl{font-size:12px;color:var(--text-on-dark-3);letter-spacing:.05em}
+  .space-lbl b{color:var(--text-on-dark);font-weight:600}
+
+  .shadow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--s5);padding:var(--s3) 0}
+  .shadow-demo{background:var(--base-800);border-radius:var(--r-md);padding:var(--s5) var(--s4);text-align:center;border:1px solid var(--base-700)}
+  .sh-1{box-shadow:none}
+  .sh-2{box-shadow:var(--shadow-sm)}
+  .sh-3{box-shadow:var(--shadow-lg)}
+  .sh-4{box-shadow:var(--shadow-glow)}
+
+  /* ============ MOCKUP HERO ============ */
+  .mock{
+    border:1px solid var(--base-700);border-radius:var(--r-md);
+    overflow:hidden;background:var(--base-900);
+  }
+  .mock-bar{
+    display:flex;align-items:center;gap:6px;
+    padding:10px 14px;background:var(--base-800);border-bottom:1px solid var(--base-700);
+  }
+  .mock-bar i{width:9px;height:9px;border-radius:var(--r-full);background:var(--base-700);display:block}
+  .mock-hero{
+    position:relative;min-height:440px;padding:var(--s6) var(--s6) var(--s8);
+    background:linear-gradient(115deg,#2E2721 0%,#1B1713 45%,#100E0C 100%);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .mock-hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(18,16,14,.9) 0%,rgba(18,16,14,.25) 55%,transparent 100%);
+    pointer-events:none;
+  }
+  .mock-nav{
+    position:absolute;top:0;left:0;right:0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:var(--s4) var(--s6);z-index:2;
+  }
+  .mock-logo{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:.06em;color:var(--text-on-dark)}
+  .mock-links{display:flex;gap:var(--s4);align-items:center}
+  .mock-links a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-on-dark-2);text-decoration:none}
+  .mock-content{position:relative;z-index:2;max-width:560px}
+  .mock-content h2{
+    font-family:var(--font-display);font-size:52px;font-weight:600;
+    line-height:1.05;letter-spacing:-.02em;color:var(--text-on-dark);
+    margin:var(--s3) 0;
+  }
+  .mock-content p{font-size:18px;color:var(--text-on-dark-2);max-width:52ch;margin-bottom:var(--s5)}
+  .mock-stats{margin:-52px var(--s6) 0;position:relative;z-index:3}
+
+  /* ============ CHECKLIST ============ */
+  .check{list-style:none;display:grid;gap:var(--s3);max-width:70ch}
+  .check li{
+    display:flex;gap:var(--s3);align-items:flex-start;
+    padding:var(--s3) var(--s4);background:var(--base-800);
+    border-left:2px solid var(--gold-700);border-radius:0 var(--r-xs) var(--r-xs) 0;
+    font-size:15px;line-height:1.6;
+  }
+  .check li b{color:var(--gold-500);font-weight:600;flex:none;font-family:var(--font-display);font-size:17px}
+
+  /* ============ REGRAS / DON'T ============ */
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s4)}
+  .rule{padding:var(--s4);border-radius:var(--r-sm);background:var(--base-800);border:1px solid var(--base-700)}
+  .rule h4{font-size:15px;font-weight:600;color:var(--text-on-dark);margin-bottom:var(--s2)}
+  .rule p{font-size:14px;line-height:1.6}
+  .rule.no{border-left:2px solid var(--error)}
+  .rule.yes{border-left:2px solid var(--success)}
+
+  /* ============ FECHAMENTO ============ */
+  .closing{
+    padding:var(--s8) 0 var(--s9);border-bottom:none;
+    background:radial-gradient(100% 100% at 50% 100%, #201C18 0%, var(--base-900) 70%);
+  }
+  .closing blockquote{
+    font-family:var(--font-display);font-size:clamp(24px,3.4vw,34px);
+    font-weight:500;line-height:1.4;color:var(--text-on-dark);
+    max-width:26ch;border-left:1px solid var(--gold-line);padding-left:var(--s5);
+  }
+
+  /* ============ TOAST ============ */
+  .toast{
+    position:fixed;left:50%;bottom:32px;transform:translate(-50%,80px);
+    background:var(--gold-500);color:var(--base-900);
+    padding:12px 24px;border-radius:var(--r-full);
+    font-size:14px;font-weight:600;letter-spacing:.02em;
+    box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;
+    transition:transform .3s ease,opacity .3s ease;z-index:99;
+  }
+  .toast.on{transform:translate(-50%,0);opacity:1}
+
+  /* ============ RESPONSIVO ============ */
+  @media (max-width:820px){
+    section{padding:var(--s7) 0}
+    .masthead{padding:var(--s7) 0 var(--s6)}
+    .type-row{grid-template-columns:1fr;gap:var(--s2)}
+    .d1{font-size:40px}.d2{font-size:30px}.d3{font-size:24px}
+    .mock-hero{padding:var(--s7) var(--s4) var(--s8);min-height:380px}
+    .mock-content h2{font-size:34px}
+    .mock-nav{padding:var(--s3) var(--s4)}
+    .mock-links{display:none}
+    .mock-stats{margin:-40px var(--s4) 0}
+    .stat{padding:20px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">Design System · v1.0</span>
+    <h1>Arquitetura que se explica antes de ser dita</h1>
+    <p>Sistema visual extraído de sete referências de arquitetura, construção de alto padrão e imóveis de luxo. Todo token abaixo serve a uma pergunta: isso faz o estúdio parecer maior, mais experiente e mais caro do que a concorrência?</p>
+    <div class="meta-row">
+      <div><div class="meta-num">11</div><div class="meta-lbl">Cores base</div></div>
+      <div><div class="meta-num">2</div><div class="meta-lbl">Famílias tipográficas</div></div>
+      <div><div class="meta-num">8px</div><div class="meta-lbl">Grid base</div></div>
+      <div><div class="meta-num">3</div><div class="meta-lbl">Usos de ouro por tela</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <ul>
+    <li><a href="#estilo">Estilo</a></li>
+    <li><a href="#cores">Cores</a></li>
+    <li><a href="#contraste">Contraste</a></li>
+    <li><a href="#tipografia">Tipografia</a></li>
+    <li><a href="#componentes">Componentes</a></li>
+    <li><a href="#estetica">Estética</a></li>
+    <li><a href="#aplicacao">Aplicação</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<!-- ============ 01 ESTILO ============ -->
+<section id="estilo">
+  <div class="wrap">
+    <span class="sec-num">01</span>
+    <h2 class="section-title">Leitura do estilo</h2>
+    <p class="section-sub">As referências convergem para um <b style="color:var(--text-on-dark)">luxo escuro e materialista</b>: fundos grafite quase pretos, iluminação âmbar vinda das próprias fotos de projeto, e um dourado usado com parcimônia — nunca como enfeite, sempre como sinalização de valor. A tipografia é o segundo protagonista: serifas de alto contraste em títulos grandes, respirando, contra um sans neutro no corpo.</p>
+
+    <div class="rules">
+      <div class="rule yes">
+        <h4>O que este sistema vende</h4>
+        <p>Permanência, materialidade e discrição. O mesmo território visual de joalheria e hotelaria de alto padrão, aplicado a concreto, madeira e vidro.</p>
+      </div>
+      <div class="rule no">
+        <h4>O que ele não é</h4>
+        <p>Não é "moderninho", não é tech, não é startup. Nada de gradiente roxo, ilustração isométrica ou cor viva de destaque.</p>
+      </div>
+      <div class="rule yes">
+        <h4>Mecanismo central</h4>
+        <p>Alternância entre seções escuras (obra, portfólio, prova social) e seções em areia clara (processo, serviços, texto longo). É o que dá ritmo e sensação de site grande e bem editado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 CORES ============ -->
+<section id="cores">
+  <div class="wrap">
+    <span class="sec-num">02</span>
+    <h2 class="section-title">Cores</h2>
+    <p class="section-sub">Base grafite, areia clara para respiro, dourado como única cor de marca. Clique em qualquer amostra para copiar o hex.</p>
+
+    <h3 class="blk">Bases escuras</h3>
+    <div class="swatch-grid">
+      <div class="swatch" data-hex="#12100E"><span class="chip" style="background:#12100E"></span><div class="info"><div class="nm">Grafite Profundo</div><div class="hx">#12100E</div><div class="use">Fundo principal, hero, footer</div></div></div>
+      <div class="swatch" data-hex="#1C1A17"><span class="chip" style="background:#1C1A17"></span><div class="info"><div class="nm">Grafite</div><div class="hx">#1C1A17</div><div class="use">Cards, barras, superfícies elevadas</div></div></div>
+      <div class="swatch" data-hex="#262320"><span class="chip" style="background:#262320"></span><div class="info"><div class="nm">Grafite Elevado</div><div class="hx">#262320</div><div class="use">Hover, bordas internas, divisores</div></div></div>
+    </div>
+
+    <h3 class="blk">Bases claras</h3>
+    <div class="swatch-grid">
+      <div class="swatch" data-hex="#F4F1EC"><span class="chip" style="background:#F4F1EC"></span><div class="info"><div class="nm">Areia Clara</div><div class="hx">#F4F1EC</div><div class="use">Fundo de seções claras</div></div></div>
+      <div class="swatch" data-hex="#E8E2D8"><span class="chip" style="background:#E8E2D8"></span><div class="info"><div class="nm">Areia</div><div class="hx">#E8E2D8</div><div class="use">Cards dentro de seção clara</div></div></div>
+      <div class="swatch" data-hex="#D6CEC1"><span class="chip" style="background:#D6CEC1"></span><div class="info"><div class="nm">Areia Média</div><div class="hx">#D6CEC1</div><div class="use">Bordas e linhas em fundo claro</div></div></div>
+    </div>
+
+    <h3 class="blk">Acento — o dourado</h3>
+    <div class="swatch-grid">
+      <div class="swatch" data-hex="#C4A265"><span class="chip" style="background:#C4A265"></span><div class="info"><div class="nm">Ouro Arquitetônico</div><div class="hx">#C4A265</div><div class="use">Cor primária de ação. Botões, números, ícones-chave</div></div></div>
+      <div class="swatch" data-hex="#DFC38C"><span class="chip" style="background:#DFC38C"></span><div class="info"><div class="nm">Ouro Claro</div><div class="hx">#DFC38C</div><div class="use">Hover de botões e links</div></div></div>
+      <div class="swatch" data-hex="#96793F"><span class="chip" style="background:#96793F"></span><div class="info"><div class="nm">Ouro Fosco</div><div class="hx">#96793F</div><div class="use">Bordas outline, estado pressionado</div></div></div>
+      <div class="swatch" data-hex="#A9714B"><span class="chip" style="background:#A9714B"></span><div class="info"><div class="nm">Bronze</div><div class="hx">#A9714B</div><div class="use">Acento secundário, categorias</div></div></div>
+      <div class="swatch" data-hex="#6E6A63"><span class="chip" style="background:#6E6A63"></span><div class="info"><div class="nm">Pedra</div><div class="hx">#6E6A63</div><div class="use">Ícones neutros, estados desativados</div></div></div>
+    </div>
+
+    <div class="rules" style="margin-top:var(--s6)">
+      <div class="rule no">
+        <h4>Orçamento de dourado</h4>
+        <p>No máximo <b style="color:var(--gold-500)">3 usos visíveis por tela</b>. Um CTA, um dado numérico, um detalhe gráfico. Passou disso, vira dourado de convite de casamento e a autoridade cai.</p>
+      </div>
+      <div class="rule no">
+        <h4>Regra de alternância</h4>
+        <p>Nunca mais de duas seções escuras seguidas sem uma quebra em areia clara. O contraste entre blocos é o que impede o site de virar um borrão escuro.</p>
+      </div>
+    </div>
+
+    <h3 class="blk">Cores de estado</h3>
+    <p class="section-sub" style="margin-bottom:var(--s4)">Deliberadamente dessaturadas. Verde-neon e vermelho-alarme brigam com a paleta terrosa e quebram o tom premium.</p>
+    <div class="swatch-grid">
+      <div class="swatch" data-hex="#6E8B5C"><span class="chip" style="background:#6E8B5C"></span><div class="info"><div class="nm">Sucesso</div><div class="hx">#6E8B5C</div><div class="use">Verde oliva, não verde neon</div></div></div>
+      <div class="swatch" data-hex="#A5462F"><span class="chip" style="background:#A5462F"></span><div class="info"><div class="nm">Erro</div><div class="hx">#A5462F</div><div class="use">Terracota escura</div></div></div>
+      <div class="swatch" data-hex="#C08A2E"><span class="chip" style="background:#C08A2E"></span><div class="info"><div class="nm">Alerta</div><div class="hx">#C08A2E</div><div class="use">Âmbar, distinto do ouro de marca</div></div></div>
+      <div class="swatch" data-hex="#5A6E7A"><span class="chip" style="background:#5A6E7A"></span><div class="info"><div class="nm">Informação</div><div class="hx">#5A6E7A</div><div class="use">Azul acinzentado</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 CONTRASTE ============ -->
+<section id="contraste">
+  <div class="wrap">
+    <span class="sec-num">03</span>
+    <h2 class="section-title">Contraste e legibilidade</h2>
+    <p class="section-sub">Paleta escura com dourado é bonita e traiçoeira. Estas são as combinações liberadas e as que quebram acessibilidade — cada bloco abaixo está renderizado com as cores reais.</p>
+
+    <h3 class="blk">Aprovadas para texto</h3>
+    <div class="contrast-grid">
+      <div class="ct" style="background:#12100E">
+        <span class="badge b-ok">AAA · 16:1</span>
+        <div class="demo" style="color:#F2EFE9">Texto primário</div>
+        <div class="ratio" style="color:#F2EFE9">#F2EFE9 sobre #12100E</div>
+      </div>
+      <div class="ct" style="background:#12100E">
+        <span class="badge b-ok">AAA · 8:1</span>
+        <div class="demo" style="color:#B0A99E">Texto secundário</div>
+        <div class="ratio" style="color:#B0A99E">#B0A99E sobre #12100E</div>
+      </div>
+      <div class="ct" style="background:#12100E">
+        <span class="badge b-ok">AAA · 7,5:1</span>
+        <div class="demo" style="color:#C4A265">Ouro sobre grafite</div>
+        <div class="ratio" style="color:#C4A265">#C4A265 sobre #12100E</div>
+      </div>
+      <div class="ct" style="background:#C4A265;border-color:#C4A265">
+        <span class="badge b-ok" style="background:rgba(18,16,14,.15);color:#12100E;border-color:rgba(18,16,14,.3)">AAA · 7,5:1</span>
+        <div class="demo" style="color:#12100E">Botão dourado</div>
+        <div class="ratio" style="color:#12100E">Texto escuro sobre ouro — sempre</div>
+      </div>
+      <div class="ct" style="background:#F4F1EC;border-color:#D6CEC1">
+        <span class="badge b-ok" style="background:rgba(110,139,92,.15);color:#4C6640;border-color:rgba(110,139,92,.35)">AAA · 15:1</span>
+        <div class="demo" style="color:#1C1A17">Texto em seção clara</div>
+        <div class="ratio" style="color:#55504A">#1C1A17 sobre #F4F1EC</div>
+      </div>
+      <div class="ct" style="background:#F4F1EC;border-color:#D6CEC1">
+        <span class="badge b-ok" style="background:rgba(110,139,92,.15);color:#4C6640;border-color:rgba(110,139,92,.35)">AA · 7:1</span>
+        <div class="demo" style="color:#55504A">Secundário em seção clara</div>
+        <div class="ratio" style="color:#55504A">#55504A sobre #F4F1EC</div>
+      </div>
+    </div>
+
+    <h3 class="blk">Proibidas para texto</h3>
+    <div class="contrast-grid">
+      <div class="ct" style="background:#F4F1EC;border-color:#D6CEC1">
+        <span class="badge b-no">Falha · 2,1:1</span>
+        <div class="demo" style="color:#C4A265">Ouro em fundo claro</div>
+        <div class="ratio" style="color:#55504A">Só ícones grandes e linhas decorativas</div>
+      </div>
+      <div class="ct" style="background:#C4A265;border-color:#C4A265">
+        <span class="badge b-no" style="background:rgba(165,70,47,.2);color:#7A2E1C;border-color:rgba(165,70,47,.45)">Falha · 2,2:1</span>
+        <div class="demo" style="color:#F2EFE9">Branco sobre ouro</div>
+        <div class="ratio" style="color:#12100E">Nunca. Em lugar nenhum.</div>
+      </div>
+      <div class="ct" style="background:#1C1A17">
+        <span class="badge b-no">Limítrofe · 4:1</span>
+        <div class="demo" style="color:#7A736A">Terciário sobre card</div>
+        <div class="ratio" style="color:#7A736A">Só metadados a partir de 16px</div>
+      </div>
+    </div>
+
+    <div class="rules" style="margin-top:var(--s6)">
+      <div class="rule no">
+        <h4>Texto sobre foto exige overlay</h4>
+        <p>Toda imagem que recebe texto leva gradiente obrigatório: de <code style="color:var(--gold-500)">#12100E</code> a 85% na base até transparente no topo, cobrindo no mínimo 60% do bloco. Sem overlay, o hero quebra em qualquer foto clara.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 TIPOGRAFIA ============ -->
+<section id="tipografia">
+  <div class="wrap">
+    <span class="sec-num">04</span>
+    <h2 class="section-title">Tipografia</h2>
+    <p class="section-sub">Duas famílias, nunca três. <b style="color:var(--text-on-dark)">Cormorant Garamond</b> para títulos — serifa de alto contraste que só respira acima de 24px. <b style="color:var(--text-on-dark)">Manrope</b> para todo o resto. Ambas gratuitas no Google Fonts. Alternativas: Fraunces (display) e Inter (corpo).</p>
+
+    <h3 class="blk">Escala — desktop</h3>
+
+    <div class="type-row">
+      <div class="type-spec"><b>H1</b>Cormorant · 64px<br>600 · 1.05 · -0.02em</div>
+      <div class="d1">Projetos que continuam fazendo sentido</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>H2</b>Cormorant · 44px<br>600 · 1.15 · -0.01em</div>
+      <div class="d2">Do croqui à entrega das chaves</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>H3</b>Cormorant · 30px<br>600 · 1.25</div>
+      <div class="d3">Residências de alto padrão</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>H4</b>Manrope · 20px<br>600 · 1.35</div>
+      <div class="d4">Casa Ipê — Lavras, MG</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>Corpo grande</b>Manrope · 18px<br>400 · 1.65</div>
+      <div class="bd-lg">Estúdio com quatorze anos dedicados a residências de alto padrão, do primeiro croqui até a entrega das chaves.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>Corpo</b>Manrope · 16px<br>400 · 1.70</div>
+      <div class="bd">Cada projeto começa com uma visita ao terreno antes de qualquer traço. Entender a orientação solar, os ventos dominantes e o que o cliente já ama na casa em que mora hoje vale mais do que qualquer referência de revista.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>Corpo pequeno</b>Manrope · 14px<br>400 · 1.60</div>
+      <div class="bd-sm">Texto de apoio dentro de cards, descrições curtas de serviço e blocos secundários.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>Legenda</b>Manrope · 13px<br>500 · 1.50</div>
+      <div class="cap">Lavras, MG · 420 m² · Entregue em 2024</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec"><b>Rótulo de seção</b>Manrope · 12px<br>600 · 0.14em · caixa alta</div>
+      <div class="lbl">Arquitetura residencial</div>
+    </div>
+
+    <div class="rules" style="margin-top:var(--s6)">
+      <div class="rule yes">
+        <h4>Números são o dourado narrativo</h4>
+        <p>Estatísticas em Cormorant grande, em ouro, com rótulo Manrope 12px caixa alta abaixo. É o elemento de autoridade mais barato e mais eficaz do sistema inteiro.</p>
+      </div>
+      <div class="rule yes">
+        <h4>Títulos grandes ganham quebra manual</h4>
+        <p>Um H1 de hero é composto em 2–3 linhas escolhidas, não deixado à sorte do container. Máximo 68 caracteres por linha no corpo de texto.</p>
+      </div>
+      <div class="rule no">
+        <h4>Abaixo de 24px, tudo é Manrope</h4>
+        <p>Cormorant em tamanho pequeno perde o traço fino e fica ilegível. Inclusive em subtítulos — não abra exceção.</p>
+      </div>
+    </div>
+
+    <h3 class="blk">Escala — mobile (até 768px)</h3>
+    <p class="bd" style="max-width:60ch">H1 <b style="color:var(--gold-500)">40px</b>/1.10 · H2 <b style="color:var(--gold-500)">30px</b>/1.20 · H3 <b style="color:var(--gold-500)">24px</b>/1.30 · Corpo permanece <b style="color:var(--gold-500)">16px</b>/1.70 — reduzir corpo no mobile é o erro mais comum e o mais caro em taxa de leitura.</p>
+  </div>
+</section>
+
+<!-- ============ 05 COMPONENTES ============ -->
+<section id="componentes">
+  <div class="wrap">
+    <span class="sec-num">05</span>
+    <h2 class="section-title">Componentes</h2>
+    <p class="section-sub">Tudo abaixo está funcionando de verdade. Passe o mouse, clique, navegue por teclado com Tab para ver os estados de foco.</p>
+
+    <h3 class="blk">Botões — altura 48px, raio 6px</h3>
+    <div class="btn-bar">
+      <button class="btn btn-primary">Ver projetos</button>
+      <button class="btn btn-outline">Conhecer o estúdio</button>
+      <button class="btn btn-ghost">Baixar portfólio</button>
+    </div>
+    <div class="btn-bar">
+      <button class="btn btn-primary btn-pill">Falar com o estúdio</button>
+      <button class="btn btn-outline btn-pill">Agendar visita</button>
+    </div>
+    <div class="btn-bar">
+      <button class="btn btn-primary" disabled>Desativado</button>
+      <button class="btn btn-outline" disabled>Desativado</button>
+    </div>
+    <p class="bd-sm" style="max-width:64ch;margin-top:var(--s3)">
+      <b style="color:var(--gold-500)">Pill só no hero e no botão fixo do menu</b> — cria o sinal de "ação principal do site". Espalhar pill em toda parte anula o efeito.
+      <br><b style="color:var(--error)">Sem setas "→" dentro do texto do botão.</b> Se precisar de direção, use um ícone real em círculo separado, como nos cards de projeto.
+    </p>
+
+    <h3 class="blk">Inputs — altura 52px</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s5)">
+      <div>
+        <div class="field">
+          <label for="f1">Nome</label>
+          <input id="f1" type="text" placeholder="Como devemos te chamar">
+        </div>
+        <div class="field">
+          <label for="f2">Local da obra</label>
+          <input id="f2" type="text" placeholder="Rua, número e cidade">
+        </div>
+        <div class="field is-error">
+          <label for="f3">Telefone</label>
+          <input id="f3" type="tel" value="99999-8888">
+          <div class="msg">Informe um telefone com DDD</div>
+        </div>
+        <div class="field">
+          <label for="f4">Campo desativado</label>
+          <input id="f4" type="text" value="Não editável" disabled>
+        </div>
+      </div>
+      <div>
+        <div class="field">
+          <label for="f5">Tipo de projeto</label>
+          <select id="f5">
+            <option>Residência unifamiliar</option>
+            <option>Reforma e ampliação</option>
+            <option>Comercial</option>
+            <option>Interiores</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f6">O que você quer construir</label>
+          <textarea id="f6" placeholder="Conte o essencial: metragem do terreno, quantos moram na casa e o prazo que tem em mente"></textarea>
+        </div>
+      </div>
+    </div>
+    <p class="bd-sm" style="max-width:64ch">
+      Rótulo <b style="color:var(--text-on-dark)">sempre visível acima do campo</b> — placeholder não substitui rótulo. Placeholder traz exemplo real do dado esperado, nunca "Digite aqui". Erro diz o que corrigir, não "Campo inválido". Fonte de 16px evita zoom automático no iOS.
+    </p>
+
+    <h3 class="blk">Card A — projeto (foto dominante)</h3>
+    <div class="card-grid">
+      <article class="card-proj">
+        <div class="ph"><span>foto 4:5</span></div>
+        <div class="body">
+          <div><h4>Casa Ipê</h4><p>Lavras, MG · 420 m²</p></div>
+          <div class="arrow">↗</div>
+        </div>
+      </article>
+      <article class="card-proj">
+        <div class="ph"><span>foto 4:5</span></div>
+        <div class="body">
+          <div><h4>Residência Pedra Alta</h4><p>Nova Lima, MG · 610 m²</p></div>
+          <div class="arrow">↗</div>
+        </div>
+      </article>
+      <article class="card-proj">
+        <div class="ph"><span>foto 4:5</span></div>
+        <div class="body">
+          <div><h4>Casa Pátio</h4><p>Carrancas, MG · 280 m²</p></div>
+          <div class="arrow">↗</div>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="blk">Card B — serviço (ícone + texto)</h3>
+    <div class="card-grid">
+      <article class="card-serv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+        <h4>Projeto arquitetônico</h4>
+        <p>Do estudo preliminar ao executivo, com todas as pranchas necessárias para aprovação e obra.</p>
+      </article>
+      <article class="card-serv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M7 7l10 10M17 7L7 17"/></svg>
+        <h4>Interiores</h4>
+        <p>Marcenaria, iluminação e acabamentos desenhados junto com a arquitetura, não depois dela.</p>
+      </article>
+      <article class="card-serv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <h4>Acompanhamento de obra</h4>
+        <p>Visitas periódicas, compatibilização com engenharia e controle do que foi especificado.</p>
+      </article>
+    </div>
+
+    <h3 class="blk">Card C — dado / prova social</h3>
+    <div class="stats-strip">
+      <div class="stat"><div class="n">14</div><div class="l">Anos de estúdio</div></div>
+      <div class="stat"><div class="n">120</div><div class="l">Projetos entregues</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">Prêmios</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">Obras acompanhadas</div></div>
+    </div>
+    <p class="bd-sm" style="max-width:66ch;margin-top:var(--s4)">
+      <b style="color:var(--error)">Não use o mesmo card para tudo.</b> O erro mais comum é aplicar o mesmo raio, a mesma borda e a mesma sombra em projeto, serviço e depoimento. Hierarquia diferente pede anatomia diferente — o card de dado, por exemplo, não tem fundo nem sombra: é informação, não caixa.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 06 ESTÉTICA ============ -->
+<section id="estetica">
+  <div class="wrap">
+    <span class="sec-num">06</span>
+    <h2 class="section-title">Estética — raio, sombra e espaçamento</h2>
+    <p class="section-sub">Escalas curtas e intencionais. Quanto maior o elemento, maior o raio; quanto mais escuro o fundo, menos sombra funciona.</p>
+
+    <h3 class="blk">Border-radius</h3>
+    <div class="demo-grid">
+      <div class="demo-box"><div class="sq" style="border-radius:4px"></div><div class="nm">radius-xs</div><div class="vl">4px · tags, badges</div></div>
+      <div class="demo-box"><div class="sq" style="border-radius:6px"></div><div class="nm">radius-sm</div><div class="vl">6px · botões, inputs</div></div>
+      <div class="demo-box"><div class="sq" style="border-radius:12px"></div><div class="nm">radius-md</div><div class="vl">12px · cards de projeto</div></div>
+      <div class="demo-box"><div class="sq" style="border-radius:20px"></div><div class="nm">radius-lg</div><div class="vl">20px · blocos de seção</div></div>
+      <div class="demo-box"><div class="sq" style="border-radius:999px"></div><div class="nm">radius-full</div><div class="vl">999px · pill, avatares</div></div>
+    </div>
+    <p class="bd-sm" style="margin-top:var(--s4)">Cantos <b style="color:var(--text-on-dark)">suaves, nunca retos</b>. Raio zero neste sistema lê como brutalismo ou jornal — território visual errado para o objetivo.</p>
+
+    <h3 class="blk">Sombras</h3>
+    <p class="bd-sm" style="max-width:64ch;margin-bottom:var(--s3)">Fundo escuro engole sombra. Aqui, profundidade vem de <b style="color:var(--text-on-dark)">mudança de cor de superfície</b>, não de sombra.</p>
+    <div class="shadow-grid">
+      <div class="shadow-demo sh-1"><div class="nm" style="color:var(--text-on-dark);font-size:13px;font-weight:600">shadow-none</div><div class="vl" style="font-size:11px;color:var(--text-on-dark-3);margin-top:4px">padrão de 90% dos elementos</div></div>
+      <div class="shadow-demo sh-2"><div class="nm" style="color:var(--text-on-dark);font-size:13px;font-weight:600">shadow-sm</div><div class="vl" style="font-size:11px;color:var(--text-on-dark-3);margin-top:4px">cards em fundo claro</div></div>
+      <div class="shadow-demo sh-3"><div class="nm" style="color:var(--text-on-dark);font-size:13px;font-weight:600">shadow-lg</div><div class="vl" style="font-size:11px;color:var(--text-on-dark-3);margin-top:4px">só elementos flutuantes</div></div>
+      <div class="shadow-demo sh-4"><div class="nm" style="color:var(--text-on-dark);font-size:13px;font-weight:600">shadow-glow</div><div class="vl" style="font-size:11px;color:var(--text-on-dark-3);margin-top:4px">exclusivo do hover do botão</div></div>
+    </div>
+    <p class="bd-sm" style="margin-top:var(--s4)"><b style="color:var(--error)">Proibido:</b> a sombra cinza genérica <code style="color:var(--text-on-dark-3)">rgba(0,0,0,0.1)</code> embaixo de todo card. É o tell visual mais óbvio de template.</p>
+
+    <h3 class="blk">Espaçamento — base 8px</h3>
+    <div class="space-row"><span class="space-bar" style="width:4px"></span><span class="space-lbl"><b>--s1</b> · 4px · detalhes internos</span></div>
+    <div class="space-row"><span class="space-bar" style="width:8px"></span><span class="space-lbl"><b>--s2</b> · 8px · gap entre rótulo e campo</span></div>
+    <div class="space-row"><span class="space-bar" style="width:16px"></span><span class="space-lbl"><b>--s3</b> · 16px · gap de grid no mobile</span></div>
+    <div class="space-row"><span class="space-bar" style="width:24px"></span><span class="space-lbl"><b>--s4</b> · 24px · padding de card, gap de grid</span></div>
+    <div class="space-row"><span class="space-bar" style="width:32px"></span><span class="space-lbl"><b>--s5</b> · 32px · padding horizontal de botão</span></div>
+    <div class="space-row"><span class="space-bar" style="width:48px"></span><span class="space-lbl"><b>--s6</b> · 48px · título de seção até o conteúdo</span></div>
+    <div class="space-row"><span class="space-bar" style="width:64px"></span><span class="space-lbl"><b>--s7</b> · 64px · padding de seção no mobile</span></div>
+    <div class="space-row"><span class="space-bar" style="width:96px"></span><span class="space-lbl"><b>--s8</b> · 96px · padding de seção no desktop</span></div>
+    <div class="space-row"><span class="space-bar" style="width:128px"></span><span class="space-lbl"><b>--s9</b> · 128px · respiro máximo entre blocos</span></div>
+
+    <div class="rules" style="margin-top:var(--s6)">
+      <div class="rule yes">
+        <h4>Regra de ouro do espaço</h4>
+        <p>Em site que vende autoridade, o espaço em branco é o item mais caro da página. Na dúvida entre 64px e 96px de respiro, escolha 96px.</p>
+      </div>
+      <div class="rule yes">
+        <h4>Grid</h4>
+        <p>Container 1280px, gutter 24px (16px no mobile), 12 colunas com gap de 24px. Projetos: 3 colunas → 2 → 1. Serviços: 4–5 colunas → 2 → 1.</p>
+      </div>
+      <div class="rule yes">
+        <h4>Movimento</h4>
+        <p>Um momento orquestrado por página. Entrada do hero em fade + subida de 16px, 600ms, escalonado em 3 elementos. Interações em 200ms. <code style="color:var(--gold-500)">prefers-reduced-motion</code> respeitado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 APLICAÇÃO ============ -->
+<section id="aplicacao">
+  <div class="wrap">
+    <span class="sec-num">07</span>
+    <h2 class="section-title">Aplicação prática</h2>
+    <p class="section-sub">Todos os tokens acima montados em uma tela real. A promessa está no tempo, não no adjetivo — e os números aparecem antes de qualquer pedido.</p>
+
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-hero">
+        <div class="mock-nav">
+          <span class="mock-logo">ATELIÊ NORTE</span>
+          <div class="mock-links">
+            <a href="#aplicacao">Projetos</a>
+            <a href="#aplicacao">Estúdio</a>
+            <a href="#aplicacao">Processo</a>
+            <button class="btn btn-outline btn-pill" style="padding:10px 20px;font-size:12px">Falar</button>
+          </div>
+        </div>
+        <div class="mock-content">
+          <span class="lbl">Arquitetura residencial</span>
+          <h2>Projetos que continuam fazendo sentido em vinte anos.</h2>
+          <p>Estúdio em Minas Gerais com quatorze anos dedicados a residências de alto padrão, do croqui à entrega.</p>
+          <button class="btn btn-primary btn-pill">Ver projetos</button>
+        </div>
+      </div>
+      <div class="mock-stats">
+        <div class="stats-strip">
+          <div class="stat"><div class="n">14</div><div class="l">Anos de estúdio</div></div>
+          <div class="stat"><div class="n">120</div><div class="l">Projetos entregues</div></div>
+          <div class="stat"><div class="n">8</div><div class="l">Prêmios</div></div>
+          <div class="stat"><div class="n">100%</div><div class="l">Obras acompanhadas</div></div>
+        </div>
+      </div>
+      <div style="padding:var(--s7) var(--s6) var(--s6)">
+        <span class="lbl">Seleção de projetos</span>
+        <h3 class="d3" style="margin:var(--s3) 0 var(--s5)">Cada casa começa com uma visita ao terreno</h3>
+        <div class="card-grid">
+          <article class="card-proj"><div class="ph"><span>foto 4:5</span></div><div class="body"><div><h4>Casa Ipê</h4><p>Lavras, MG · 420 m²</p></div><div class="arrow">↗</div></div></article>
+          <article class="card-proj"><div class="ph"><span>foto 4:5</span></div><div class="body"><div><h4>Pedra Alta</h4><p>Nova Lima, MG · 610 m²</p></div><div class="arrow">↗</div></div></article>
+          <article class="card-proj"><div class="ph"><span>foto 4:5</span></div><div class="body"><div><h4>Casa Pátio</h4><p>Carrancas, MG · 280 m²</p></div><div class="arrow">↗</div></div></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules" style="margin-top:var(--s6)">
+      <div class="rule yes">
+        <h4>Por que isso gera autoridade</h4>
+        <p>A promessa está no tempo ("vinte anos"), não no adjetivo ("incrível"). A prova numérica aparece antes de qualquer CTA secundário. O visitante recebe evidência antes de receber pedido.</p>
+      </div>
+      <div class="rule no">
+        <h4>Pré-requisito não negociável</h4>
+        <p>Este sistema depende de fotografia noturna de projeto real, com luz quente. Se o cliente ainda não tem portfólio fotografado profissionalmente, isso vem antes do site — nenhuma escolha de cor salva um hero com render frio ou banco de imagens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CHECKLIST ============ -->
+<section id="checklist">
+  <div class="wrap">
+    <span class="sec-num">08</span>
+    <h2 class="section-title">Checklist antes de publicar</h2>
+    <p class="section-sub">Oito verificações que separam um site que parece caro de um que parece template com cor trocada.</p>
+    <ul class="check">
+      <li><b>01</b><span>Nenhuma tela tem mais de três usos visíveis de dourado</span></li>
+      <li><b>02</b><span>Todo texto sobre foto tem overlay em gradiente</span></li>
+      <li><b>03</b><span>Nenhum botão dourado com texto branco</span></li>
+      <li><b>04</b><span>Cards de projeto, serviço e dado têm anatomias diferentes</span></li>
+      <li><b>05</b><span>Padding de seção igual ou maior que 96px no desktop</span></li>
+      <li><b>06</b><span>Foco visível em todos os elementos navegáveis por teclado</span></li>
+      <li><b>07</b><span>Linha de corpo de texto abaixo de 68 caracteres</span></li>
+      <li><b>08</b><span>Todas as fotos tratadas com a mesma temperatura de cor</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+<section class="closing">
+  <div class="wrap">
+    <span class="sec-num">Tom visual</span>
+    <blockquote>A página deve parecer cara antes de dizer que é.</blockquote>
+    <p class="bd-lg" style="max-width:60ch;margin-top:var(--s5)">
+      Luxo escuro e material: grafite quase preto como base, areia clara para respiro, dourado usado com economia de joalheiro.
+      Serifa de alto contraste em títulos grandes contra sans neutro no corpo — a tipografia carrega a elegância, a cor apenas sinaliza.
+      Muito espaço, poucas sombras, cantos suaves e fotografia noturna quente.
+    </p>
+  </div>
+</section>
+
+<div class="toast" id="toast">Hex copiado</div>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast');
+  var timer;
+
+  function show(msg){
+    toast.textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(function(){ toast.classList.remove('on'); }, 1600);
+  }
+
+  function copy(text){
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){
+        show(text + ' copiado');
+      }).catch(fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); show(text + ' copiado'); }
+      catch(e){ show('Copie manualmente: ' + text); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  document.querySelectorAll('.swatch').forEach(function(el){
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','button');
+    el.setAttribute('aria-label','Copiar ' + el.dataset.hex);
+    el.addEventListener('click', function(){ copy(el.dataset.hex); });
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(el.dataset.hex); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
